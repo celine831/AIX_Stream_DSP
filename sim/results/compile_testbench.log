@@ -1,0 +1,15 @@
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 13:44:06 on Oct 13,2026
+vlog -sv -lint tb_accelerator.sv tb_quantizer.sv tb_fifo.sv tb_board_selftest.sv 
+-- Compiling module tb_accelerator
+-- Compiling module tb_quantizer
+-- Compiling module tb_fifo
+-- Compiling module tb_board_selftest
+
+Top level modules:
+	tb_accelerator
+	tb_quantizer
+	tb_fifo
+	tb_board_selftest
+End time: 13:44:06 on Oct 13,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

@@ -1,0 +1,91 @@
+[
+  {
+    "case": "sync_default",
+    "status": "PASS",
+    "evidence": "# PASS case=sync_default sent=1536 received=1536 stalls=2246 input_stalls=1549 max_consecutive=260 cycles=4234 first_latency_ns=90"
+  },
+  {
+    "case": "async_default",
+    "status": "PASS",
+    "evidence": "# PASS case=async_default sent=1536 received=1536 stalls=2211 input_stalls=805 max_consecutive=23 cycles=4416 first_latency_ns=116"
+  },
+  {
+    "case": "odd_taps_even",
+    "status": "PASS",
+    "evidence": "# PASS case=odd_taps_even sent=1536 received=1536 stalls=2245 input_stalls=1948 max_consecutive=260 cycles=4209 first_latency_ns=80"
+  },
+  {
+    "case": "async_wrap",
+    "status": "PASS",
+    "evidence": "# PASS case=async_wrap sent=1536 received=1536 stalls=3089 input_stalls=2142 max_consecutive=13 cycles=6126 first_latency_ns=112"
+  },
+  {
+    "case": "one_tap_shift0",
+    "status": "PASS",
+    "evidence": "# PASS case=one_tap_shift0 sent=1536 received=1536 stalls=2261 input_stalls=1892 max_consecutive=260 cycles=4209 first_latency_ns=60"
+  },
+  {
+    "case": "sixteen_taps",
+    "status": "PASS",
+    "evidence": "# PASS case=sixteen_taps sent=1536 received=1536 stalls=2381 input_stalls=982 max_consecutive=23 cycles=4675 first_latency_ns=122"
+  },
+  {
+    "case": "trunc_sat",
+    "status": "PASS",
+    "evidence": "# PASS case=trunc_sat sent=1536 received=1536 stalls=2245 input_stalls=1948 max_consecutive=260 cycles=4209 first_latency_ns=80"
+  },
+  {
+    "case": "round_wrap",
+    "status": "PASS",
+    "evidence": "# PASS case=round_wrap sent=1536 received=1536 stalls=3059 input_stalls=2141 max_consecutive=13 cycles=6120 first_latency_ns=104"
+  },
+  {
+    "case": "even_wrap",
+    "status": "PASS",
+    "evidence": "# PASS case=even_wrap sent=1536 received=1536 stalls=3096 input_stalls=2157 max_consecutive=12 cycles=6120 first_latency_ns=82"
+  },
+  {
+    "case": "away_ties",
+    "status": "PASS",
+    "evidence": "# PASS case=away_ties sent=1536 received=1536 stalls=2261 input_stalls=1892 max_consecutive=260 cycles=4209 first_latency_ns=60"
+  },
+  {
+    "case": "async_fast_source",
+    "status": "PASS",
+    "evidence": "# PASS case=async_fast_source sent=1536 received=1536 stalls=2266 input_stalls=3751 max_consecutive=258 cycles=4233 first_latency_ns=120"
+  },
+  {
+    "case": "quantizer_shift0",
+    "status": "PASS",
+    "checks": 24576
+  },
+  {
+    "case": "quantizer_shift1",
+    "status": "PASS",
+    "checks": 24576
+  },
+  {
+    "case": "quantizer_shift3",
+    "status": "PASS",
+    "checks": 24576
+  },
+  {
+    "case": "quantizer_shift7",
+    "status": "PASS",
+    "checks": 24576
+  },
+  {
+    "case": "quantizer_shift11",
+    "status": "PASS",
+    "checks": 24576
+  },
+  {
+    "case": "fifo_full_pop_push",
+    "status": "PASS"
+  },
+  {
+    "case": "board_selftest",
+    "status": "PASS",
+    "checks": 512
+  }
+]

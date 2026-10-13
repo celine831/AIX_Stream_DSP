@@ -1,0 +1,33 @@
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 13:44:06 on Oct 13,2026
+vlog -lint D:\02GitHub\02AIX_Stream_DSP\rtl\accelerator.v D:\02GitHub\02AIX_Stream_DSP\rtl\axis_async_fifo.v D:\02GitHub\02AIX_Stream_DSP\rtl\axis_fifo.v D:\02GitHub\02AIX_Stream_DSP\rtl\axis_register.v D:\02GitHub\02AIX_Stream_DSP\rtl\board_selftest.v D:\02GitHub\02AIX_Stream_DSP\rtl\fir_pipeline.v D:\02GitHub\02AIX_Stream_DSP\rtl\fixed_quantizer.v D:\02GitHub\02AIX_Stream_DSP\rtl\reset_sync.v D:\02GitHub\02AIX_Stream_DSP\board\board_vectors.v 
+-- Compiling module accelerator
+-- Compiling module axis_async_fifo
+-- Compiling module axis_fifo
+-- Compiling module axis_register
+-- Compiling module board_selftest
+-- Compiling module fir_pipeline
+-- Compiling module fixed_quantizer
+-- Compiling module reset_sync
+-- Compiling module board_vector_rom
+-- Compiling module board_coefficient_rom
+
+Top level modules:
+	board_selftest
+End time: 13:44:06 on Oct 13,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 13:44:06 on Oct 13,2026
+vlog -sv -lint tb_accelerator.sv tb_quantizer.sv tb_fifo.sv tb_board_selftest.sv 
+-- Compiling module tb_accelerator
+-- Compiling module tb_quantizer
+-- Compiling module tb_fifo
+-- Compiling module tb_board_selftest
+
+Top level modules:
+	tb_accelerator
+	tb_quantizer
+	tb_fifo
+	tb_board_selftest
+End time: 13:44:06 on Oct 13,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

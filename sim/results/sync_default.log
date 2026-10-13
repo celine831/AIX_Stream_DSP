@@ -1,0 +1,39 @@
+Reading D:/00study/01fpga/DownloadSoftware/modelsim_se/tcl/vsim/pref.tcl
+
+# 10.5
+
+# vsim -c -voptargs="+acc" work.tb_accelerator "+CASE=sync_default" -wlf D:\02GitHub\02AIX_Stream_DSP\sim\results\sync_default.wlf -do "onerror {quit -code 1 -force}; onbreak {quit -code 1 -force}; log -r /*; run -all; quit -code 0 -force" -gROUND_MODE=1 -gTAPS=8 -gFIFO_ADDR_WIDTH=4 -gFRAME_RESET=0 -gSATURATE=1 -gDATA_WIDTH=16 -gUSE_ASYNC=0 -gSHIFT=15 -gCOEFF_WIDTH=16 -gOUT_WIDTH=16 
+# Start time: 13:44:07 on Oct 13,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 10.5 Feb 13 2016 
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_accelerator(fast)
+# Loading work.accelerator(fast)
+# Loading work.reset_sync(fast)
+# Loading work.axis_fifo(fast)
+# Loading work.axis_register(fast)
+# Loading work.fir_pipeline(fast)
+# Loading work.fixed_quantizer(fast)
+# onerror {quit -code 1 -force}
+#  Warning: onerror command for use within macro
+#  onbreak {quit -code 1 -force}
+#  Warning: onbreak command for use within macro
+#  log -r /*
+#  run -all
+# PASS case=sync_default sent=1536 received=1536 stalls=2246 input_stalls=1549 max_consecutive=260 cycles=4234 first_latency_ns=90
+# ** Note: $finish    : tb_accelerator.sv(174)
+#    Time: 42340 ns  Iteration: 1  Instance: /tb_accelerator
+# End time: 13:44:08 on Oct 13,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
