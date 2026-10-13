@@ -1,0 +1,270 @@
+{
+  "date": "2026-10-13",
+  "device": "EP4CE10F17C8",
+  "quartus": "13.0.1 Build 232",
+  "modelsim": "SE-64 10.5",
+  "simulation_tests": 18,
+  "fir_comparisons": 16896,
+  "quantizer_comparisons": 122880,
+  "simulation": [
+    {
+      "case": "sync_default",
+      "status": "PASS",
+      "evidence": "# PASS case=sync_default sent=1536 received=1536 stalls=2246 input_stalls=1549 max_consecutive=260 cycles=4234 first_latency_ns=90"
+    },
+    {
+      "case": "async_default",
+      "status": "PASS",
+      "evidence": "# PASS case=async_default sent=1536 received=1536 stalls=2211 input_stalls=805 max_consecutive=23 cycles=4416 first_latency_ns=116"
+    },
+    {
+      "case": "odd_taps_even",
+      "status": "PASS",
+      "evidence": "# PASS case=odd_taps_even sent=1536 received=1536 stalls=2245 input_stalls=1948 max_consecutive=260 cycles=4209 first_latency_ns=80"
+    },
+    {
+      "case": "async_wrap",
+      "status": "PASS",
+      "evidence": "# PASS case=async_wrap sent=1536 received=1536 stalls=3089 input_stalls=2142 max_consecutive=13 cycles=6126 first_latency_ns=112"
+    },
+    {
+      "case": "one_tap_shift0",
+      "status": "PASS",
+      "evidence": "# PASS case=one_tap_shift0 sent=1536 received=1536 stalls=2261 input_stalls=1892 max_consecutive=260 cycles=4209 first_latency_ns=60"
+    },
+    {
+      "case": "sixteen_taps",
+      "status": "PASS",
+      "evidence": "# PASS case=sixteen_taps sent=1536 received=1536 stalls=2381 input_stalls=982 max_consecutive=23 cycles=4675 first_latency_ns=122"
+    },
+    {
+      "case": "trunc_sat",
+      "status": "PASS",
+      "evidence": "# PASS case=trunc_sat sent=1536 received=1536 stalls=2245 input_stalls=1948 max_consecutive=260 cycles=4209 first_latency_ns=80"
+    },
+    {
+      "case": "round_wrap",
+      "status": "PASS",
+      "evidence": "# PASS case=round_wrap sent=1536 received=1536 stalls=3059 input_stalls=2141 max_consecutive=13 cycles=6120 first_latency_ns=104"
+    },
+    {
+      "case": "even_wrap",
+      "status": "PASS",
+      "evidence": "# PASS case=even_wrap sent=1536 received=1536 stalls=3096 input_stalls=2157 max_consecutive=12 cycles=6120 first_latency_ns=82"
+    },
+    {
+      "case": "away_ties",
+      "status": "PASS",
+      "evidence": "# PASS case=away_ties sent=1536 received=1536 stalls=2261 input_stalls=1892 max_consecutive=260 cycles=4209 first_latency_ns=60"
+    },
+    {
+      "case": "async_fast_source",
+      "status": "PASS",
+      "evidence": "# PASS case=async_fast_source sent=1536 received=1536 stalls=2266 input_stalls=3751 max_consecutive=258 cycles=4233 first_latency_ns=120"
+    },
+    {
+      "case": "quantizer_shift0",
+      "status": "PASS",
+      "checks": 24576
+    },
+    {
+      "case": "quantizer_shift1",
+      "status": "PASS",
+      "checks": 24576
+    },
+    {
+      "case": "quantizer_shift3",
+      "status": "PASS",
+      "checks": 24576
+    },
+    {
+      "case": "quantizer_shift7",
+      "status": "PASS",
+      "checks": 24576
+    },
+    {
+      "case": "quantizer_shift11",
+      "status": "PASS",
+      "checks": 24576
+    },
+    {
+      "case": "fifo_full_pop_push",
+      "status": "PASS"
+    },
+    {
+      "case": "board_selftest",
+      "status": "PASS",
+      "checks": 512
+    }
+  ],
+  "revisions": {
+    "accelerator": {
+      "fmax_mhz": {
+        "core_clk": 78.14
+      },
+      "resources": {
+        "Total logic elements": 1427,
+        "Total registers": 1256,
+        "Total memory bits": 0,
+        "Embedded Multiplier 9-bit elements": 16,
+        "Total pins": 65
+      },
+      "slow_85C_slack_ns": {
+        "setup": 0.535,
+        "hold": 0.453,
+        "recovery": 9.49,
+        "removal": 2.798
+      },
+      "target_core_mhz": 75,
+      "target_source_mhz": null,
+      "all_corner_timing_met": true,
+      "constraint_checks": 0,
+      "board_pin_assignment_complete": false
+    },
+    "accelerator_cdc": {
+      "fmax_mhz": {
+        "core_clk": 83.31,
+        "source_clk": 97.4
+      },
+      "resources": {
+        "Total logic elements": 1466,
+        "Total registers": 1291,
+        "Total memory bits": 0,
+        "Embedded Multiplier 9-bit elements": 16,
+        "Total pins": 65
+      },
+      "slow_85C_slack_ns": {
+        "setup": 1.33,
+        "hold": 0.452,
+        "recovery": 9.491,
+        "removal": 1.149
+      },
+      "target_core_mhz": 75,
+      "target_source_mhz": 50,
+      "all_corner_timing_met": true,
+      "constraint_checks": 0,
+      "board_pin_assignment_complete": false
+    },
+    "board_selftest": {
+      "fmax_mhz": {
+        "board_clk": 69.76
+      },
+      "resources": {
+        "Total logic elements": 1846,
+        "Total registers": 1191,
+        "Total memory bits": 0,
+        "Embedded Multiplier 9-bit elements": 16,
+        "Total pins": 6
+      },
+      "slow_85C_slack_ns": {
+        "setup": 5.666,
+        "hold": 0.452,
+        "recovery": 15.596,
+        "removal": 1.184
+      },
+      "target_core_mhz": 50,
+      "target_source_mhz": null,
+      "all_corner_timing_met": true,
+      "constraint_checks": 0,
+      "board_pin_assignment_complete": true,
+      "verified_pin_map": {
+        "sys_clk": "E1",
+        "sys_rst_n": "M15",
+        "led[0]": "L7",
+        "led[1]": "M6",
+        "led[2]": "P3",
+        "led[3]": "N3"
+      }
+    }
+  },
+  "board_golden_comparisons": 512,
+  "gray_skew_worst_slack_ns": 9.598,
+  "hashes": {
+    "rtl\\accelerator.v": "1829a1029256567fe75f5677370cabdac1b4eb7e93cf63a050a994498e38d7a3",
+    "rtl\\axis_async_fifo.v": "6feb5e0c5ee9e58593f3618824dfd3e47ab67e13489731ae94002044f6bd36ce",
+    "rtl\\axis_fifo.v": "61fcc9d34f86698e029e93ec2891a6a9ae00d7d590434c8b1d3a4b7a738bb6cb",
+    "rtl\\axis_register.v": "3c8fbb3f161822a69fddd97d0b9f7ebbf81880168af5fad0da43aa696ec88602",
+    "rtl\\board_selftest.v": "632e62951fa0981ac03016ccba25bf61637f9a37b3854c747fcfe6f440e3599f",
+    "rtl\\fir_pipeline.v": "744ae6a76c374d5ec4bc9fc76d73e455ffc638781bb7546bf6a157dfbfbdfb66",
+    "rtl\\fixed_quantizer.v": "c9c0e6de3a5b72199b66a95bf222503e3f27db2b79cd05eb7f1cf106b57c9861",
+    "rtl\\reset_sync.v": "c21106a145b96ed6b66a670174954501d911230bd66b82245b99e7b5c3e08297",
+    "board\\board_vectors.v": "3f2a4f4dfe8d0ef8fae6f41bb65961f0ad9406df2dc4c9993b8623b9eca4b8f9",
+    "board\\generate_board_vectors.py": "a9b62fa7e6ceaee6b6a8eb033e22076f614374312072001474f6a5155788f034",
+    "sim\\tb_accelerator.sv": "d17c405b340dfaaeefec2cae5bc972ad0555e0ab6767df5613eb9056e3c97a4f",
+    "sim\\tb_board_selftest.sv": "d0c7542aea2a70e24b6ca1269b29d7c948f8a382d1ec981333553a30c6b5c7ed",
+    "sim\\tb_fifo.sv": "6f44378fa1b333d75fcc88a35a75eaa0059daa0ca1bfe346c1b5299086d017b2",
+    "sim\\tb_quantizer.sv": "ec87b6d8e9698568285f63c2aebe1e60f35efdb4915ef19ad715bc8ae7ab2633",
+    "sim\\golden_model.py": "7bffef33f5459cb5d3f85c1f273ba91ef646d1173c90efe39f69b3998711de70",
+    "sim\\run_regression.py": "d3b2ebb5179ff5202d4566fde64ec44386f560dc9933e6133b11f1a1f6d14aeb",
+    "Qproject\\accelerator.sdc": "ee4c548ef10ff42c42b860190fe59aae2e315c63d9a2c881619048bf942837bf",
+    "Qproject\\accelerator_cdc.sdc": "65d5fd754faa29c5bfe83a79365b8a0fd2203befe20add2f2312ef164c3ca3a9",
+    "Qproject\\board_selftest.sdc": "4b427b5091893ee64d201eaa8a0829ab661b1f9b560f3dc2ca8cf9892920d946",
+    "Qproject\\board_pins.qsf": "98114f7ee694eff3aa681b048677cd79804da61ec76fbded0de37664d9917da9"
+  },
+  "documentation": {
+    "renderer": "LibreOffice 26.8.1 isolated temporary runtime and Poppler",
+    "documents": [
+      {
+        "path": "doc\\01_项目设计说明书.docx",
+        "pages": 8,
+        "sha256": "d39289423d11d7ecd3593f19d28b173dcdaf30200959f9fbf4d191a2183b3828",
+        "inspected_pages": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "visual_qa": "PASS",
+        "content_preserved": true,
+        "source_sha256": "232a4f95cea210cc243c33c0d9232d1ac2391606b0c6146fd8185f1985c05d0d",
+        "body_paragraphs_checked": 26,
+        "chinese_runs_checked": 132,
+        "format": {
+          "body_font": "宋体",
+          "heading_font": "微软雅黑",
+          "body_line_spacing": 1.5,
+          "first_line_indent_characters": 2
+        },
+        "assistance_statements_found": 0,
+        "matches_inspected_file": true
+      },
+      {
+        "path": "doc\\02_模块实现与验证报告.docx",
+        "pages": 13,
+        "sha256": "1f2377747c419c0740b5481a6cfa8c2ec4baa43182a5452b59df3446257ae1bd",
+        "inspected_pages": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "visual_qa": "PASS",
+        "content_preserved": true,
+        "source_sha256": "5ea5c5723f42a36cadddc2dab5ae2c181f2e7f8a5e423115946f4cce3776cfef",
+        "body_paragraphs_checked": 66,
+        "chinese_runs_checked": 190,
+        "format": {
+          "body_font": "宋体",
+          "heading_font": "微软雅黑",
+          "body_line_spacing": 1.5,
+          "first_line_indent_characters": 2
+        },
+        "assistance_statements_found": 0,
+        "matches_inspected_file": true
+      }
+    ]
+  }
+}
