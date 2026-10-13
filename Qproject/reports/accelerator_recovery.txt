@@ -1,0 +1,484 @@
+----------------
+; Command Info ;
+----------------
+Report Timing: Found 5 recovery paths (0 violated).  Worst case slack is 9.490 
+
+Tcl Command:
+    report_timing -recovery -file reports/accelerator_recovery.txt -npaths 5 -detail full_path
+
+Options:
+    -recovery 
+    -npaths 5 
+    -detail full_path 
+    -file {reports/accelerator_recovery.txt} 
+
+Delay Model:
+    Slow 1200mV 85C Model
+
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Summary of Paths                                                                                                                                ;
++-------+----------------------------------+--------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                        ; To Node                        ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+----------------------------------+--------------------------------+--------------+-------------+--------------+------------+------------+
+; 9.490 ; reset_sync:core_reset|sync_ff[1] ; fir_pipeline:fir|history[6][0] ; core_clk     ; core_clk    ; 13.333       ; -0.263     ; 3.332      ;
+; 9.490 ; reset_sync:core_reset|sync_ff[1] ; fir_pipeline:fir|history[6][1] ; core_clk     ; core_clk    ; 13.333       ; -0.263     ; 3.332      ;
+; 9.490 ; reset_sync:core_reset|sync_ff[1] ; fir_pipeline:fir|history[6][2] ; core_clk     ; core_clk    ; 13.333       ; -0.263     ; 3.332      ;
+; 9.490 ; reset_sync:core_reset|sync_ff[1] ; fir_pipeline:fir|history[6][3] ; core_clk     ; core_clk    ; 13.333       ; -0.263     ; 3.332      ;
+; 9.490 ; reset_sync:core_reset|sync_ff[1] ; fir_pipeline:fir|history[6][4] ; core_clk     ; core_clk    ; 13.333       ; -0.263     ; 3.332      ;
++-------+----------------------------------+--------------------------------+--------------+-------------+--------------+------------+------------+
+
+Path #1: Recovery slack is 9.490 
+===============================================================================
++-------------------------------------------------------+
+; Path Summary                                          ;
++--------------------+----------------------------------+
+; Property           ; Value                            ;
++--------------------+----------------------------------+
+; From Node          ; reset_sync:core_reset|sync_ff[1] ;
+; To Node            ; fir_pipeline:fir|history[6][0]   ;
+; Launch Clock       ; core_clk                         ;
+; Latch Clock        ; core_clk                         ;
+; Data Arrival Time  ; 5.935                            ;
+; Data Required Time ; 15.425                           ;
+; Slack              ; 9.490                            ;
++--------------------+----------------------------------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Recovery Relationship  ; 13.333 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.263 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 3.332  ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 1     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.170       ; 44         ; 0.000 ; 0.948 ;
+;    Cell                ;        ; 3     ; 1.433       ; 55         ; 0.000 ; 0.766 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 2     ; 2.067       ; 62         ; 0.953 ; 1.114 ;
+;    Cell                ;        ; 3     ; 1.004       ; 30         ; 0.000 ; 1.004 ;
+;    uTco                ;        ; 1     ; 0.261       ; 7          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.111       ; 47         ; 0.000 ; 0.898 ;
+;    Cell                ;        ; 3     ; 1.214       ; 52         ; 0.000 ; 0.766 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-------------------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                                     ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+; Total   ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                                 ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+; 0.000   ; 0.000   ;    ;      ;        ;                    ; launch edge time                        ;
+; 2.603   ; 2.603   ;    ;      ;        ;                    ; clock path                              ;
+;   0.000 ;   0.000 ;    ;      ;        ;                    ; source latency                          ;
+;   0.000 ;   0.000 ;    ;      ; 1      ; PIN_E1             ; aclk                                    ;
+;   0.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|i                            ;
+;   0.766 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|o                            ;
+;   0.988 ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; aclk~inputclkctrl|inclk[0]              ;
+;   0.988 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2         ; aclk~inputclkctrl|outclk                ;
+;   1.936 ;   0.948 ; RR ; IC   ; 1      ; FF_X33_Y12_N11     ; core_reset|sync_ff[1]|clk               ;
+;   2.603 ;   0.667 ; RR ; CELL ; 1      ; FF_X33_Y12_N11     ; reset_sync:core_reset|sync_ff[1]        ;
+; 5.935   ; 3.332   ;    ;      ;        ;                    ; data path                               ;
+;   2.864 ;   0.261 ;    ; uTco ; 1      ; FF_X33_Y12_N11     ; reset_sync:core_reset|sync_ff[1]        ;
+;   2.864 ;   0.000 ; FF ; CELL ; 130    ; FF_X33_Y12_N11     ; core_reset|sync_ff[1]|q                 ;
+;   3.978 ;   1.114 ; FF ; IC   ; 1      ; CLKCTRL_G8         ; core_reset|sync_ff[1]~clkctrl|inclk[0]  ;
+;   3.978 ;   0.000 ; FF ; CELL ; 444    ; CLKCTRL_G8         ; core_reset|sync_ff[1]~clkctrl|outclk    ;
+;   4.931 ;   0.953 ; FF ; IC   ; 16     ; DSPMULT_X20_Y12_N0 ; fir|Mult7|auto_generated|mac_mult1|aclr ;
+;   5.935 ;   1.004 ; FF ; CELL ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][0]          ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+
++-------------------------------------------------------------------------------------------------------+
+; Data Required Path                                                                                    ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                                ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+; 13.333   ; 13.333  ;    ;      ;        ;                    ; latch edge time                        ;
+; 15.673   ; 2.340   ;    ;      ;        ;                    ; clock path                             ;
+;   13.333 ;   0.000 ;    ;      ;        ;                    ; source latency                         ;
+;   13.333 ;   0.000 ;    ;      ; 1      ; PIN_E1             ; aclk                                   ;
+;   13.333 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|i                           ;
+;   14.099 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|o                           ;
+;   14.312 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; aclk~inputclkctrl|inclk[0]             ;
+;   14.312 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2         ; aclk~inputclkctrl|outclk               ;
+;   15.210 ;   0.898 ; RR ; IC   ; 16     ; DSPMULT_X20_Y12_N0 ; fir|Mult7|auto_generated|mac_mult1|clk ;
+;   15.658 ;   0.448 ; RR ; CELL ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][0]         ;
+;   15.673 ;   0.015 ;    ;      ;        ;                    ; clock pessimism                        ;
+; 15.653   ; -0.020  ;    ;      ;        ;                    ; clock uncertainty                      ;
+; 15.425   ; -0.228  ;    ; uTsu ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][0]         ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #2: Recovery slack is 9.490 
+===============================================================================
++-------------------------------------------------------+
+; Path Summary                                          ;
++--------------------+----------------------------------+
+; Property           ; Value                            ;
++--------------------+----------------------------------+
+; From Node          ; reset_sync:core_reset|sync_ff[1] ;
+; To Node            ; fir_pipeline:fir|history[6][1]   ;
+; Launch Clock       ; core_clk                         ;
+; Latch Clock        ; core_clk                         ;
+; Data Arrival Time  ; 5.935                            ;
+; Data Required Time ; 15.425                           ;
+; Slack              ; 9.490                            ;
++--------------------+----------------------------------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Recovery Relationship  ; 13.333 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.263 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 3.332  ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 1     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.170       ; 44         ; 0.000 ; 0.948 ;
+;    Cell                ;        ; 3     ; 1.433       ; 55         ; 0.000 ; 0.766 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 2     ; 2.067       ; 62         ; 0.953 ; 1.114 ;
+;    Cell                ;        ; 3     ; 1.004       ; 30         ; 0.000 ; 1.004 ;
+;    uTco                ;        ; 1     ; 0.261       ; 7          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.111       ; 47         ; 0.000 ; 0.898 ;
+;    Cell                ;        ; 3     ; 1.214       ; 52         ; 0.000 ; 0.766 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-------------------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                                     ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+; Total   ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                                 ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+; 0.000   ; 0.000   ;    ;      ;        ;                    ; launch edge time                        ;
+; 2.603   ; 2.603   ;    ;      ;        ;                    ; clock path                              ;
+;   0.000 ;   0.000 ;    ;      ;        ;                    ; source latency                          ;
+;   0.000 ;   0.000 ;    ;      ; 1      ; PIN_E1             ; aclk                                    ;
+;   0.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|i                            ;
+;   0.766 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|o                            ;
+;   0.988 ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; aclk~inputclkctrl|inclk[0]              ;
+;   0.988 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2         ; aclk~inputclkctrl|outclk                ;
+;   1.936 ;   0.948 ; RR ; IC   ; 1      ; FF_X33_Y12_N11     ; core_reset|sync_ff[1]|clk               ;
+;   2.603 ;   0.667 ; RR ; CELL ; 1      ; FF_X33_Y12_N11     ; reset_sync:core_reset|sync_ff[1]        ;
+; 5.935   ; 3.332   ;    ;      ;        ;                    ; data path                               ;
+;   2.864 ;   0.261 ;    ; uTco ; 1      ; FF_X33_Y12_N11     ; reset_sync:core_reset|sync_ff[1]        ;
+;   2.864 ;   0.000 ; FF ; CELL ; 130    ; FF_X33_Y12_N11     ; core_reset|sync_ff[1]|q                 ;
+;   3.978 ;   1.114 ; FF ; IC   ; 1      ; CLKCTRL_G8         ; core_reset|sync_ff[1]~clkctrl|inclk[0]  ;
+;   3.978 ;   0.000 ; FF ; CELL ; 444    ; CLKCTRL_G8         ; core_reset|sync_ff[1]~clkctrl|outclk    ;
+;   4.931 ;   0.953 ; FF ; IC   ; 16     ; DSPMULT_X20_Y12_N0 ; fir|Mult7|auto_generated|mac_mult1|aclr ;
+;   5.935 ;   1.004 ; FF ; CELL ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][1]          ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+
++-------------------------------------------------------------------------------------------------------+
+; Data Required Path                                                                                    ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                                ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+; 13.333   ; 13.333  ;    ;      ;        ;                    ; latch edge time                        ;
+; 15.673   ; 2.340   ;    ;      ;        ;                    ; clock path                             ;
+;   13.333 ;   0.000 ;    ;      ;        ;                    ; source latency                         ;
+;   13.333 ;   0.000 ;    ;      ; 1      ; PIN_E1             ; aclk                                   ;
+;   13.333 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|i                           ;
+;   14.099 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|o                           ;
+;   14.312 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; aclk~inputclkctrl|inclk[0]             ;
+;   14.312 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2         ; aclk~inputclkctrl|outclk               ;
+;   15.210 ;   0.898 ; RR ; IC   ; 16     ; DSPMULT_X20_Y12_N0 ; fir|Mult7|auto_generated|mac_mult1|clk ;
+;   15.658 ;   0.448 ; RR ; CELL ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][1]         ;
+;   15.673 ;   0.015 ;    ;      ;        ;                    ; clock pessimism                        ;
+; 15.653   ; -0.020  ;    ;      ;        ;                    ; clock uncertainty                      ;
+; 15.425   ; -0.228  ;    ; uTsu ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][1]         ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #3: Recovery slack is 9.490 
+===============================================================================
++-------------------------------------------------------+
+; Path Summary                                          ;
++--------------------+----------------------------------+
+; Property           ; Value                            ;
++--------------------+----------------------------------+
+; From Node          ; reset_sync:core_reset|sync_ff[1] ;
+; To Node            ; fir_pipeline:fir|history[6][2]   ;
+; Launch Clock       ; core_clk                         ;
+; Latch Clock        ; core_clk                         ;
+; Data Arrival Time  ; 5.935                            ;
+; Data Required Time ; 15.425                           ;
+; Slack              ; 9.490                            ;
++--------------------+----------------------------------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Recovery Relationship  ; 13.333 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.263 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 3.332  ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 1     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.170       ; 44         ; 0.000 ; 0.948 ;
+;    Cell                ;        ; 3     ; 1.433       ; 55         ; 0.000 ; 0.766 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 2     ; 2.067       ; 62         ; 0.953 ; 1.114 ;
+;    Cell                ;        ; 3     ; 1.004       ; 30         ; 0.000 ; 1.004 ;
+;    uTco                ;        ; 1     ; 0.261       ; 7          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.111       ; 47         ; 0.000 ; 0.898 ;
+;    Cell                ;        ; 3     ; 1.214       ; 52         ; 0.000 ; 0.766 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-------------------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                                     ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+; Total   ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                                 ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+; 0.000   ; 0.000   ;    ;      ;        ;                    ; launch edge time                        ;
+; 2.603   ; 2.603   ;    ;      ;        ;                    ; clock path                              ;
+;   0.000 ;   0.000 ;    ;      ;        ;                    ; source latency                          ;
+;   0.000 ;   0.000 ;    ;      ; 1      ; PIN_E1             ; aclk                                    ;
+;   0.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|i                            ;
+;   0.766 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|o                            ;
+;   0.988 ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; aclk~inputclkctrl|inclk[0]              ;
+;   0.988 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2         ; aclk~inputclkctrl|outclk                ;
+;   1.936 ;   0.948 ; RR ; IC   ; 1      ; FF_X33_Y12_N11     ; core_reset|sync_ff[1]|clk               ;
+;   2.603 ;   0.667 ; RR ; CELL ; 1      ; FF_X33_Y12_N11     ; reset_sync:core_reset|sync_ff[1]        ;
+; 5.935   ; 3.332   ;    ;      ;        ;                    ; data path                               ;
+;   2.864 ;   0.261 ;    ; uTco ; 1      ; FF_X33_Y12_N11     ; reset_sync:core_reset|sync_ff[1]        ;
+;   2.864 ;   0.000 ; FF ; CELL ; 130    ; FF_X33_Y12_N11     ; core_reset|sync_ff[1]|q                 ;
+;   3.978 ;   1.114 ; FF ; IC   ; 1      ; CLKCTRL_G8         ; core_reset|sync_ff[1]~clkctrl|inclk[0]  ;
+;   3.978 ;   0.000 ; FF ; CELL ; 444    ; CLKCTRL_G8         ; core_reset|sync_ff[1]~clkctrl|outclk    ;
+;   4.931 ;   0.953 ; FF ; IC   ; 16     ; DSPMULT_X20_Y12_N0 ; fir|Mult7|auto_generated|mac_mult1|aclr ;
+;   5.935 ;   1.004 ; FF ; CELL ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][2]          ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+
++-------------------------------------------------------------------------------------------------------+
+; Data Required Path                                                                                    ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                                ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+; 13.333   ; 13.333  ;    ;      ;        ;                    ; latch edge time                        ;
+; 15.673   ; 2.340   ;    ;      ;        ;                    ; clock path                             ;
+;   13.333 ;   0.000 ;    ;      ;        ;                    ; source latency                         ;
+;   13.333 ;   0.000 ;    ;      ; 1      ; PIN_E1             ; aclk                                   ;
+;   13.333 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|i                           ;
+;   14.099 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|o                           ;
+;   14.312 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; aclk~inputclkctrl|inclk[0]             ;
+;   14.312 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2         ; aclk~inputclkctrl|outclk               ;
+;   15.210 ;   0.898 ; RR ; IC   ; 16     ; DSPMULT_X20_Y12_N0 ; fir|Mult7|auto_generated|mac_mult1|clk ;
+;   15.658 ;   0.448 ; RR ; CELL ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][2]         ;
+;   15.673 ;   0.015 ;    ;      ;        ;                    ; clock pessimism                        ;
+; 15.653   ; -0.020  ;    ;      ;        ;                    ; clock uncertainty                      ;
+; 15.425   ; -0.228  ;    ; uTsu ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][2]         ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #4: Recovery slack is 9.490 
+===============================================================================
++-------------------------------------------------------+
+; Path Summary                                          ;
++--------------------+----------------------------------+
+; Property           ; Value                            ;
++--------------------+----------------------------------+
+; From Node          ; reset_sync:core_reset|sync_ff[1] ;
+; To Node            ; fir_pipeline:fir|history[6][3]   ;
+; Launch Clock       ; core_clk                         ;
+; Latch Clock        ; core_clk                         ;
+; Data Arrival Time  ; 5.935                            ;
+; Data Required Time ; 15.425                           ;
+; Slack              ; 9.490                            ;
++--------------------+----------------------------------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Recovery Relationship  ; 13.333 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.263 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 3.332  ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 1     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.170       ; 44         ; 0.000 ; 0.948 ;
+;    Cell                ;        ; 3     ; 1.433       ; 55         ; 0.000 ; 0.766 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 2     ; 2.067       ; 62         ; 0.953 ; 1.114 ;
+;    Cell                ;        ; 3     ; 1.004       ; 30         ; 0.000 ; 1.004 ;
+;    uTco                ;        ; 1     ; 0.261       ; 7          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.111       ; 47         ; 0.000 ; 0.898 ;
+;    Cell                ;        ; 3     ; 1.214       ; 52         ; 0.000 ; 0.766 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-------------------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                                     ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+; Total   ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                                 ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+; 0.000   ; 0.000   ;    ;      ;        ;                    ; launch edge time                        ;
+; 2.603   ; 2.603   ;    ;      ;        ;                    ; clock path                              ;
+;   0.000 ;   0.000 ;    ;      ;        ;                    ; source latency                          ;
+;   0.000 ;   0.000 ;    ;      ; 1      ; PIN_E1             ; aclk                                    ;
+;   0.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|i                            ;
+;   0.766 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|o                            ;
+;   0.988 ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; aclk~inputclkctrl|inclk[0]              ;
+;   0.988 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2         ; aclk~inputclkctrl|outclk                ;
+;   1.936 ;   0.948 ; RR ; IC   ; 1      ; FF_X33_Y12_N11     ; core_reset|sync_ff[1]|clk               ;
+;   2.603 ;   0.667 ; RR ; CELL ; 1      ; FF_X33_Y12_N11     ; reset_sync:core_reset|sync_ff[1]        ;
+; 5.935   ; 3.332   ;    ;      ;        ;                    ; data path                               ;
+;   2.864 ;   0.261 ;    ; uTco ; 1      ; FF_X33_Y12_N11     ; reset_sync:core_reset|sync_ff[1]        ;
+;   2.864 ;   0.000 ; FF ; CELL ; 130    ; FF_X33_Y12_N11     ; core_reset|sync_ff[1]|q                 ;
+;   3.978 ;   1.114 ; FF ; IC   ; 1      ; CLKCTRL_G8         ; core_reset|sync_ff[1]~clkctrl|inclk[0]  ;
+;   3.978 ;   0.000 ; FF ; CELL ; 444    ; CLKCTRL_G8         ; core_reset|sync_ff[1]~clkctrl|outclk    ;
+;   4.931 ;   0.953 ; FF ; IC   ; 16     ; DSPMULT_X20_Y12_N0 ; fir|Mult7|auto_generated|mac_mult1|aclr ;
+;   5.935 ;   1.004 ; FF ; CELL ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][3]          ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+
++-------------------------------------------------------------------------------------------------------+
+; Data Required Path                                                                                    ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                                ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+; 13.333   ; 13.333  ;    ;      ;        ;                    ; latch edge time                        ;
+; 15.673   ; 2.340   ;    ;      ;        ;                    ; clock path                             ;
+;   13.333 ;   0.000 ;    ;      ;        ;                    ; source latency                         ;
+;   13.333 ;   0.000 ;    ;      ; 1      ; PIN_E1             ; aclk                                   ;
+;   13.333 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|i                           ;
+;   14.099 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|o                           ;
+;   14.312 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; aclk~inputclkctrl|inclk[0]             ;
+;   14.312 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2         ; aclk~inputclkctrl|outclk               ;
+;   15.210 ;   0.898 ; RR ; IC   ; 16     ; DSPMULT_X20_Y12_N0 ; fir|Mult7|auto_generated|mac_mult1|clk ;
+;   15.658 ;   0.448 ; RR ; CELL ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][3]         ;
+;   15.673 ;   0.015 ;    ;      ;        ;                    ; clock pessimism                        ;
+; 15.653   ; -0.020  ;    ;      ;        ;                    ; clock uncertainty                      ;
+; 15.425   ; -0.228  ;    ; uTsu ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][3]         ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #5: Recovery slack is 9.490 
+===============================================================================
++-------------------------------------------------------+
+; Path Summary                                          ;
++--------------------+----------------------------------+
+; Property           ; Value                            ;
++--------------------+----------------------------------+
+; From Node          ; reset_sync:core_reset|sync_ff[1] ;
+; To Node            ; fir_pipeline:fir|history[6][4]   ;
+; Launch Clock       ; core_clk                         ;
+; Latch Clock        ; core_clk                         ;
+; Data Arrival Time  ; 5.935                            ;
+; Data Required Time ; 15.425                           ;
+; Slack              ; 9.490                            ;
++--------------------+----------------------------------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Recovery Relationship  ; 13.333 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.263 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 3.332  ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 1     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.170       ; 44         ; 0.000 ; 0.948 ;
+;    Cell                ;        ; 3     ; 1.433       ; 55         ; 0.000 ; 0.766 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 2     ; 2.067       ; 62         ; 0.953 ; 1.114 ;
+;    Cell                ;        ; 3     ; 1.004       ; 30         ; 0.000 ; 1.004 ;
+;    uTco                ;        ; 1     ; 0.261       ; 7          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.111       ; 47         ; 0.000 ; 0.898 ;
+;    Cell                ;        ; 3     ; 1.214       ; 52         ; 0.000 ; 0.766 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-------------------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                                     ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+; Total   ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                                 ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+; 0.000   ; 0.000   ;    ;      ;        ;                    ; launch edge time                        ;
+; 2.603   ; 2.603   ;    ;      ;        ;                    ; clock path                              ;
+;   0.000 ;   0.000 ;    ;      ;        ;                    ; source latency                          ;
+;   0.000 ;   0.000 ;    ;      ; 1      ; PIN_E1             ; aclk                                    ;
+;   0.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|i                            ;
+;   0.766 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|o                            ;
+;   0.988 ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; aclk~inputclkctrl|inclk[0]              ;
+;   0.988 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2         ; aclk~inputclkctrl|outclk                ;
+;   1.936 ;   0.948 ; RR ; IC   ; 1      ; FF_X33_Y12_N11     ; core_reset|sync_ff[1]|clk               ;
+;   2.603 ;   0.667 ; RR ; CELL ; 1      ; FF_X33_Y12_N11     ; reset_sync:core_reset|sync_ff[1]        ;
+; 5.935   ; 3.332   ;    ;      ;        ;                    ; data path                               ;
+;   2.864 ;   0.261 ;    ; uTco ; 1      ; FF_X33_Y12_N11     ; reset_sync:core_reset|sync_ff[1]        ;
+;   2.864 ;   0.000 ; FF ; CELL ; 130    ; FF_X33_Y12_N11     ; core_reset|sync_ff[1]|q                 ;
+;   3.978 ;   1.114 ; FF ; IC   ; 1      ; CLKCTRL_G8         ; core_reset|sync_ff[1]~clkctrl|inclk[0]  ;
+;   3.978 ;   0.000 ; FF ; CELL ; 444    ; CLKCTRL_G8         ; core_reset|sync_ff[1]~clkctrl|outclk    ;
+;   4.931 ;   0.953 ; FF ; IC   ; 16     ; DSPMULT_X20_Y12_N0 ; fir|Mult7|auto_generated|mac_mult1|aclr ;
+;   5.935 ;   1.004 ; FF ; CELL ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][4]          ;
++---------+---------+----+------+--------+--------------------+-----------------------------------------+
+
++-------------------------------------------------------------------------------------------------------+
+; Data Required Path                                                                                    ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                                ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+; 13.333   ; 13.333  ;    ;      ;        ;                    ; latch edge time                        ;
+; 15.673   ; 2.340   ;    ;      ;        ;                    ; clock path                             ;
+;   13.333 ;   0.000 ;    ;      ;        ;                    ; source latency                         ;
+;   13.333 ;   0.000 ;    ;      ; 1      ; PIN_E1             ; aclk                                   ;
+;   13.333 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|i                           ;
+;   14.099 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; aclk~input|o                           ;
+;   14.312 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; aclk~inputclkctrl|inclk[0]             ;
+;   14.312 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2         ; aclk~inputclkctrl|outclk               ;
+;   15.210 ;   0.898 ; RR ; IC   ; 16     ; DSPMULT_X20_Y12_N0 ; fir|Mult7|auto_generated|mac_mult1|clk ;
+;   15.658 ;   0.448 ; RR ; CELL ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][4]         ;
+;   15.673 ;   0.015 ;    ;      ;        ;                    ; clock pessimism                        ;
+; 15.653   ; -0.020  ;    ;      ;        ;                    ; clock uncertainty                      ;
+; 15.425   ; -0.228  ;    ; uTsu ; 1      ; DSPMULT_X20_Y12_N0 ; fir_pipeline:fir|history[6][4]         ;
++----------+---------+----+------+--------+--------------------+----------------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+

@@ -1,0 +1,1104 @@
+----------------
+; Command Info ;
+----------------
+Report Timing: Found 10 setup paths (0 violated).  Worst case slack is 5.666 
+
+Tcl Command:
+    report_timing -setup -file reports/board_selftest_setup.txt -npaths 10 -detail full_path
+
+Options:
+    -setup 
+    -npaths 10 
+    -detail full_path 
+    -file {reports/board_selftest_setup.txt} 
+
+Delay Model:
+    Slow 1200mV 85C Model
+
++-----------------------------------------------------------------------------------------------------------+
+; Summary of Paths                                                                                          ;
++-------+-------------------+---------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node         ; To Node ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-------------------+---------+--------------+-------------+--------------+------------+------------+
+; 5.666 ; bank[0]           ; failed  ; board_clk    ; board_clk   ; 20.000       ; -0.086     ; 14.249     ;
+; 5.732 ; received_count[2] ; failed  ; board_clk    ; board_clk   ; 20.000       ; -0.104     ; 14.165     ;
+; 5.977 ; bank[0]           ; failed  ; board_clk    ; board_clk   ; 20.000       ; -0.086     ; 13.938     ;
+; 5.982 ; received_count[0] ; failed  ; board_clk    ; board_clk   ; 20.000       ; -0.104     ; 13.915     ;
+; 5.988 ; bank[0]           ; failed  ; board_clk    ; board_clk   ; 20.000       ; -0.086     ; 13.927     ;
+; 6.027 ; received_count[2] ; failed  ; board_clk    ; board_clk   ; 20.000       ; -0.104     ; 13.870     ;
+; 6.037 ; received_count[2] ; failed  ; board_clk    ; board_clk   ; 20.000       ; -0.104     ; 13.860     ;
+; 6.085 ; received_count[1] ; failed  ; board_clk    ; board_clk   ; 20.000       ; -0.104     ; 13.812     ;
+; 6.096 ; bank[0]           ; failed  ; board_clk    ; board_clk   ; 20.000       ; -0.086     ; 13.819     ;
+; 6.162 ; received_count[2] ; failed  ; board_clk    ; board_clk   ; 20.000       ; -0.104     ; 13.735     ;
++-------+-------------------+---------+--------------+-------------+--------------+------------+------------+
+
+Path #1: Setup slack is 5.666 
+===============================================================================
++--------------------------------+
+; Path Summary                   ;
++--------------------+-----------+
+; Property           ; Value     ;
++--------------------+-----------+
+; From Node          ; bank[0]   ;
+; To Node            ; failed    ;
+; Launch Clock       ; board_clk ;
+; Latch Clock        ; board_clk ;
+; Data Arrival Time  ; 16.829    ;
+; Data Required Time ; 22.495    ;
+; Slack              ; 5.666     ;
++--------------------+-----------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Setup Relationship     ; 20.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.086 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 14.249 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 9     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.164       ; 45         ; 0.000 ; 0.942 ;
+;    Cell                ;        ; 3     ; 1.416       ; 54         ; 0.000 ; 0.749 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 10    ; 10.393      ; 72         ; 0.000 ; 1.992 ;
+;    Cell                ;        ; 11    ; 3.595       ; 25         ; 0.000 ; 0.472 ;
+;    uTco                ;        ; 1     ; 0.261       ; 1          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.112       ; 44         ; 0.000 ; 0.899 ;
+;    Cell                ;        ; 3     ; 1.367       ; 55         ; 0.000 ; 0.749 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-----------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                             ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                        ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; 0.000    ; 0.000   ;    ;      ;        ;                    ; launch edge time               ;
+; 2.580    ; 2.580   ;    ;      ;        ;                    ; clock path                     ;
+;   0.000  ;   0.000 ;    ;      ;        ;                    ; source latency                 ;
+;   0.000  ;   0.000 ;    ;      ; 1      ; PIN_E1             ; sys_clk                        ;
+;   0.000  ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|i                ;
+;   0.749  ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|o                ;
+;   0.971  ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; sys_clk~inputclkctrl|inclk[0]  ;
+;   0.971  ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2         ; sys_clk~inputclkctrl|outclk    ;
+;   1.913  ;   0.942 ; RR ; IC   ; 1      ; FF_X21_Y9_N25      ; bank[0]|clk                    ;
+;   2.580  ;   0.667 ; RR ; CELL ; 1      ; FF_X21_Y9_N25      ; bank[0]                        ;
+; 16.829   ; 14.249  ;    ;      ;        ;                    ; data path                      ;
+;   2.841  ;   0.261 ;    ; uTco ; 1      ; FF_X21_Y9_N25      ; bank[0]                        ;
+;   2.841  ;   0.000 ; RR ; CELL ; 134    ; FF_X21_Y9_N25      ; bank[0]|q                      ;
+;   4.624  ;   1.783 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|dataa   ;
+;   5.077  ;   0.453 ; RR ; CELL ; 2      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|combout ;
+;   5.366  ;   0.289 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|dataa   ;
+;   5.837  ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|combout ;
+;   6.114  ;   0.277 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|dataa   ;
+;   6.585  ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|combout ;
+;   8.442  ;   1.857 ; RR ; IC   ; 1      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|datac   ;
+;   8.769  ;   0.327 ; RR ; CELL ; 3      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|combout ;
+;   9.972  ;   1.203 ; RR ; IC   ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|dataa   ;
+;   10.443 ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|combout ;
+;   12.039 ;   1.596 ; RR ; IC   ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|datac                 ;
+;   12.366 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|combout               ;
+;   13.526 ;   1.160 ; RR ; IC   ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|datac                 ;
+;   13.853 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|combout               ;
+;   15.845 ;   1.992 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|datab                 ;
+;   16.317 ;   0.472 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|combout               ;
+;   16.553 ;   0.236 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|datad                 ;
+;   16.730 ;   0.177 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|combout               ;
+;   16.730 ;   0.000 ; RR ; IC   ; 1      ; FF_X18_Y10_N9      ; failed|d                       ;
+;   16.829 ;   0.099 ; RR ; CELL ; 1      ; FF_X18_Y10_N9      ; failed                         ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+
++--------------------------------------------------------------------------------------------+
+; Data Required Path                                                                         ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                       ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; 20.000   ; 20.000  ;    ;      ;        ;                  ; latch edge time               ;
+; 22.494   ; 2.494   ;    ;      ;        ;                  ; clock path                    ;
+;   20.000 ;   0.000 ;    ;      ;        ;                  ; source latency                ;
+;   20.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; sys_clk                       ;
+;   20.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|i               ;
+;   20.749 ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|o               ;
+;   20.962 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; sys_clk~inputclkctrl|inclk[0] ;
+;   20.962 ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2       ; sys_clk~inputclkctrl|outclk   ;
+;   21.861 ;   0.899 ; RR ; IC   ; 1      ; FF_X18_Y10_N9    ; failed|clk                    ;
+;   22.479 ;   0.618 ; RR ; CELL ; 1      ; FF_X18_Y10_N9    ; failed                        ;
+;   22.494 ;   0.015 ;    ;      ;        ;                  ; clock pessimism               ;
+; 22.474   ; -0.020  ;    ;      ;        ;                  ; clock uncertainty             ;
+; 22.495   ; 0.021   ;    ; uTsu ; 1      ; FF_X18_Y10_N9    ; failed                        ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #2: Setup slack is 5.732 
+===============================================================================
++----------------------------------------+
+; Path Summary                           ;
++--------------------+-------------------+
+; Property           ; Value             ;
++--------------------+-------------------+
+; From Node          ; received_count[2] ;
+; To Node            ; failed            ;
+; Launch Clock       ; board_clk         ;
+; Latch Clock        ; board_clk         ;
+; Data Arrival Time  ; 16.763            ;
+; Data Required Time ; 22.495            ;
+; Slack              ; 5.732             ;
++--------------------+-------------------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Setup Relationship     ; 20.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.104 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 14.165 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 9     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.182       ; 45         ; 0.000 ; 0.960 ;
+;    Cell                ;        ; 3     ; 1.416       ; 54         ; 0.000 ; 0.749 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 10    ; 10.352      ; 73         ; 0.000 ; 1.992 ;
+;    Cell                ;        ; 11    ; 3.552       ; 25         ; 0.000 ; 0.472 ;
+;    uTco                ;        ; 1     ; 0.261       ; 1          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.112       ; 44         ; 0.000 ; 0.899 ;
+;    Cell                ;        ; 3     ; 1.367       ; 55         ; 0.000 ; 0.749 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-----------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                             ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                        ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; 0.000    ; 0.000   ;    ;      ;        ;                    ; launch edge time               ;
+; 2.598    ; 2.598   ;    ;      ;        ;                    ; clock path                     ;
+;   0.000  ;   0.000 ;    ;      ;        ;                    ; source latency                 ;
+;   0.000  ;   0.000 ;    ;      ; 1      ; PIN_E1             ; sys_clk                        ;
+;   0.000  ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|i                ;
+;   0.749  ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|o                ;
+;   0.971  ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; sys_clk~inputclkctrl|inclk[0]  ;
+;   0.971  ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2         ; sys_clk~inputclkctrl|outclk    ;
+;   1.931  ;   0.960 ; RR ; IC   ; 1      ; FF_X17_Y9_N21      ; received_count[2]|clk          ;
+;   2.598  ;   0.667 ; RR ; CELL ; 1      ; FF_X17_Y9_N21      ; received_count[2]              ;
+; 16.763   ; 14.165  ;    ;      ;        ;                    ; data path                      ;
+;   2.859  ;   0.261 ;    ; uTco ; 1      ; FF_X17_Y9_N21      ; received_count[2]              ;
+;   2.859  ;   0.000 ; RR ; CELL ; 146    ; FF_X17_Y9_N21      ; received_count[2]|q            ;
+;   4.601  ;   1.742 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|datab   ;
+;   5.011  ;   0.410 ; RR ; CELL ; 2      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|combout ;
+;   5.300  ;   0.289 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|dataa   ;
+;   5.771  ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|combout ;
+;   6.048  ;   0.277 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|dataa   ;
+;   6.519  ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|combout ;
+;   8.376  ;   1.857 ; RR ; IC   ; 1      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|datac   ;
+;   8.703  ;   0.327 ; RR ; CELL ; 3      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|combout ;
+;   9.906  ;   1.203 ; RR ; IC   ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|dataa   ;
+;   10.377 ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|combout ;
+;   11.973 ;   1.596 ; RR ; IC   ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|datac                 ;
+;   12.300 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|combout               ;
+;   13.460 ;   1.160 ; RR ; IC   ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|datac                 ;
+;   13.787 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|combout               ;
+;   15.779 ;   1.992 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|datab                 ;
+;   16.251 ;   0.472 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|combout               ;
+;   16.487 ;   0.236 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|datad                 ;
+;   16.664 ;   0.177 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|combout               ;
+;   16.664 ;   0.000 ; RR ; IC   ; 1      ; FF_X18_Y10_N9      ; failed|d                       ;
+;   16.763 ;   0.099 ; RR ; CELL ; 1      ; FF_X18_Y10_N9      ; failed                         ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+
++--------------------------------------------------------------------------------------------+
+; Data Required Path                                                                         ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                       ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; 20.000   ; 20.000  ;    ;      ;        ;                  ; latch edge time               ;
+; 22.494   ; 2.494   ;    ;      ;        ;                  ; clock path                    ;
+;   20.000 ;   0.000 ;    ;      ;        ;                  ; source latency                ;
+;   20.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; sys_clk                       ;
+;   20.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|i               ;
+;   20.749 ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|o               ;
+;   20.962 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; sys_clk~inputclkctrl|inclk[0] ;
+;   20.962 ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2       ; sys_clk~inputclkctrl|outclk   ;
+;   21.861 ;   0.899 ; RR ; IC   ; 1      ; FF_X18_Y10_N9    ; failed|clk                    ;
+;   22.479 ;   0.618 ; RR ; CELL ; 1      ; FF_X18_Y10_N9    ; failed                        ;
+;   22.494 ;   0.015 ;    ;      ;        ;                  ; clock pessimism               ;
+; 22.474   ; -0.020  ;    ;      ;        ;                  ; clock uncertainty             ;
+; 22.495   ; 0.021   ;    ; uTsu ; 1      ; FF_X18_Y10_N9    ; failed                        ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #3: Setup slack is 5.977 
+===============================================================================
++--------------------------------+
+; Path Summary                   ;
++--------------------+-----------+
+; Property           ; Value     ;
++--------------------+-----------+
+; From Node          ; bank[0]   ;
+; To Node            ; failed    ;
+; Launch Clock       ; board_clk ;
+; Latch Clock        ; board_clk ;
+; Data Arrival Time  ; 16.518    ;
+; Data Required Time ; 22.495    ;
+; Slack              ; 5.977     ;
++--------------------+-----------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Setup Relationship     ; 20.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.086 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 13.938 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 9     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.164       ; 45         ; 0.000 ; 0.942 ;
+;    Cell                ;        ; 3     ; 1.416       ; 54         ; 0.000 ; 0.749 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 10    ; 10.366      ; 74         ; 0.000 ; 1.992 ;
+;    Cell                ;        ; 11    ; 3.311       ; 23         ; 0.000 ; 0.472 ;
+;    uTco                ;        ; 1     ; 0.261       ; 1          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.112       ; 44         ; 0.000 ; 0.899 ;
+;    Cell                ;        ; 3     ; 1.367       ; 55         ; 0.000 ; 0.749 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-----------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                             ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                        ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; 0.000    ; 0.000   ;    ;      ;        ;                    ; launch edge time               ;
+; 2.580    ; 2.580   ;    ;      ;        ;                    ; clock path                     ;
+;   0.000  ;   0.000 ;    ;      ;        ;                    ; source latency                 ;
+;   0.000  ;   0.000 ;    ;      ; 1      ; PIN_E1             ; sys_clk                        ;
+;   0.000  ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|i                ;
+;   0.749  ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|o                ;
+;   0.971  ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; sys_clk~inputclkctrl|inclk[0]  ;
+;   0.971  ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2         ; sys_clk~inputclkctrl|outclk    ;
+;   1.913  ;   0.942 ; RR ; IC   ; 1      ; FF_X21_Y9_N25      ; bank[0]|clk                    ;
+;   2.580  ;   0.667 ; RR ; CELL ; 1      ; FF_X21_Y9_N25      ; bank[0]                        ;
+; 16.518   ; 13.938  ;    ;      ;        ;                    ; data path                      ;
+;   2.841  ;   0.261 ;    ; uTco ; 1      ; FF_X21_Y9_N25      ; bank[0]                        ;
+;   2.841  ;   0.000 ; FF ; CELL ; 134    ; FF_X21_Y9_N25      ; bank[0]|q                      ;
+;   4.614  ;   1.773 ; FF ; IC   ; 1      ; LCCOMB_X10_Y12_N2  ; reference_rom|Ram1~112|dataa   ;
+;   5.086  ;   0.472 ; FF ; CELL ; 2      ; LCCOMB_X10_Y12_N2  ; reference_rom|Ram1~112|combout ;
+;   5.358  ;   0.272 ; FF ; IC   ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|datad   ;
+;   5.526  ;   0.168 ; FR ; CELL ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|combout ;
+;   5.803  ;   0.277 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|dataa   ;
+;   6.274  ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|combout ;
+;   8.131  ;   1.857 ; RR ; IC   ; 1      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|datac   ;
+;   8.458  ;   0.327 ; RR ; CELL ; 3      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|combout ;
+;   9.661  ;   1.203 ; RR ; IC   ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|dataa   ;
+;   10.132 ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|combout ;
+;   11.728 ;   1.596 ; RR ; IC   ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|datac                 ;
+;   12.055 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|combout               ;
+;   13.215 ;   1.160 ; RR ; IC   ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|datac                 ;
+;   13.542 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|combout               ;
+;   15.534 ;   1.992 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|datab                 ;
+;   16.006 ;   0.472 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|combout               ;
+;   16.242 ;   0.236 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|datad                 ;
+;   16.419 ;   0.177 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|combout               ;
+;   16.419 ;   0.000 ; RR ; IC   ; 1      ; FF_X18_Y10_N9      ; failed|d                       ;
+;   16.518 ;   0.099 ; RR ; CELL ; 1      ; FF_X18_Y10_N9      ; failed                         ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+
++--------------------------------------------------------------------------------------------+
+; Data Required Path                                                                         ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                       ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; 20.000   ; 20.000  ;    ;      ;        ;                  ; latch edge time               ;
+; 22.494   ; 2.494   ;    ;      ;        ;                  ; clock path                    ;
+;   20.000 ;   0.000 ;    ;      ;        ;                  ; source latency                ;
+;   20.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; sys_clk                       ;
+;   20.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|i               ;
+;   20.749 ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|o               ;
+;   20.962 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; sys_clk~inputclkctrl|inclk[0] ;
+;   20.962 ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2       ; sys_clk~inputclkctrl|outclk   ;
+;   21.861 ;   0.899 ; RR ; IC   ; 1      ; FF_X18_Y10_N9    ; failed|clk                    ;
+;   22.479 ;   0.618 ; RR ; CELL ; 1      ; FF_X18_Y10_N9    ; failed                        ;
+;   22.494 ;   0.015 ;    ;      ;        ;                  ; clock pessimism               ;
+; 22.474   ; -0.020  ;    ;      ;        ;                  ; clock uncertainty             ;
+; 22.495   ; 0.021   ;    ; uTsu ; 1      ; FF_X18_Y10_N9    ; failed                        ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #4: Setup slack is 5.982 
+===============================================================================
++----------------------------------------+
+; Path Summary                           ;
++--------------------+-------------------+
+; Property           ; Value             ;
++--------------------+-------------------+
+; From Node          ; received_count[0] ;
+; To Node            ; failed            ;
+; Launch Clock       ; board_clk         ;
+; Latch Clock        ; board_clk         ;
+; Data Arrival Time  ; 16.513            ;
+; Data Required Time ; 22.495            ;
+; Slack              ; 5.982             ;
++--------------------+-------------------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Setup Relationship     ; 20.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.104 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 13.915 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 9     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.182       ; 45         ; 0.000 ; 0.960 ;
+;    Cell                ;        ; 3     ; 1.416       ; 54         ; 0.000 ; 0.749 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 10    ; 10.185      ; 73         ; 0.000 ; 1.992 ;
+;    Cell                ;        ; 11    ; 3.469       ; 24         ; 0.000 ; 0.472 ;
+;    uTco                ;        ; 1     ; 0.261       ; 1          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.112       ; 44         ; 0.000 ; 0.899 ;
+;    Cell                ;        ; 3     ; 1.367       ; 55         ; 0.000 ; 0.749 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-----------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                             ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                        ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; 0.000    ; 0.000   ;    ;      ;        ;                    ; launch edge time               ;
+; 2.598    ; 2.598   ;    ;      ;        ;                    ; clock path                     ;
+;   0.000  ;   0.000 ;    ;      ;        ;                    ; source latency                 ;
+;   0.000  ;   0.000 ;    ;      ; 1      ; PIN_E1             ; sys_clk                        ;
+;   0.000  ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|i                ;
+;   0.749  ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|o                ;
+;   0.971  ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; sys_clk~inputclkctrl|inclk[0]  ;
+;   0.971  ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2         ; sys_clk~inputclkctrl|outclk    ;
+;   1.931  ;   0.960 ; RR ; IC   ; 1      ; FF_X17_Y9_N17      ; received_count[0]|clk          ;
+;   2.598  ;   0.667 ; RR ; CELL ; 1      ; FF_X17_Y9_N17      ; received_count[0]              ;
+; 16.513   ; 13.915  ;    ;      ;        ;                    ; data path                      ;
+;   2.859  ;   0.261 ;    ; uTco ; 1      ; FF_X17_Y9_N17      ; received_count[0]              ;
+;   2.859  ;   0.000 ; RR ; CELL ; 147    ; FF_X17_Y9_N17      ; received_count[0]|q            ;
+;   4.434  ;   1.575 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|datac   ;
+;   4.761  ;   0.327 ; RR ; CELL ; 2      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|combout ;
+;   5.050  ;   0.289 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|dataa   ;
+;   5.521  ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|combout ;
+;   5.798  ;   0.277 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|dataa   ;
+;   6.269  ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|combout ;
+;   8.126  ;   1.857 ; RR ; IC   ; 1      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|datac   ;
+;   8.453  ;   0.327 ; RR ; CELL ; 3      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|combout ;
+;   9.656  ;   1.203 ; RR ; IC   ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|dataa   ;
+;   10.127 ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|combout ;
+;   11.723 ;   1.596 ; RR ; IC   ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|datac                 ;
+;   12.050 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|combout               ;
+;   13.210 ;   1.160 ; RR ; IC   ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|datac                 ;
+;   13.537 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|combout               ;
+;   15.529 ;   1.992 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|datab                 ;
+;   16.001 ;   0.472 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|combout               ;
+;   16.237 ;   0.236 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|datad                 ;
+;   16.414 ;   0.177 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|combout               ;
+;   16.414 ;   0.000 ; RR ; IC   ; 1      ; FF_X18_Y10_N9      ; failed|d                       ;
+;   16.513 ;   0.099 ; RR ; CELL ; 1      ; FF_X18_Y10_N9      ; failed                         ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+
++--------------------------------------------------------------------------------------------+
+; Data Required Path                                                                         ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                       ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; 20.000   ; 20.000  ;    ;      ;        ;                  ; latch edge time               ;
+; 22.494   ; 2.494   ;    ;      ;        ;                  ; clock path                    ;
+;   20.000 ;   0.000 ;    ;      ;        ;                  ; source latency                ;
+;   20.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; sys_clk                       ;
+;   20.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|i               ;
+;   20.749 ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|o               ;
+;   20.962 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; sys_clk~inputclkctrl|inclk[0] ;
+;   20.962 ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2       ; sys_clk~inputclkctrl|outclk   ;
+;   21.861 ;   0.899 ; RR ; IC   ; 1      ; FF_X18_Y10_N9    ; failed|clk                    ;
+;   22.479 ;   0.618 ; RR ; CELL ; 1      ; FF_X18_Y10_N9    ; failed                        ;
+;   22.494 ;   0.015 ;    ;      ;        ;                  ; clock pessimism               ;
+; 22.474   ; -0.020  ;    ;      ;        ;                  ; clock uncertainty             ;
+; 22.495   ; 0.021   ;    ; uTsu ; 1      ; FF_X18_Y10_N9    ; failed                        ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #5: Setup slack is 5.988 
+===============================================================================
++--------------------------------+
+; Path Summary                   ;
++--------------------+-----------+
+; Property           ; Value     ;
++--------------------+-----------+
+; From Node          ; bank[0]   ;
+; To Node            ; failed    ;
+; Launch Clock       ; board_clk ;
+; Latch Clock        ; board_clk ;
+; Data Arrival Time  ; 16.507    ;
+; Data Required Time ; 22.495    ;
+; Slack              ; 5.988     ;
++--------------------+-----------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Setup Relationship     ; 20.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.086 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 13.927 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 9     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.164       ; 45         ; 0.000 ; 0.942 ;
+;    Cell                ;        ; 3     ; 1.416       ; 54         ; 0.000 ; 0.749 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 10    ; 10.382      ; 74         ; 0.000 ; 1.992 ;
+;    Cell                ;        ; 11    ; 3.284       ; 23         ; 0.000 ; 0.472 ;
+;    uTco                ;        ; 1     ; 0.261       ; 1          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.112       ; 44         ; 0.000 ; 0.899 ;
+;    Cell                ;        ; 3     ; 1.367       ; 55         ; 0.000 ; 0.749 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-----------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                             ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                        ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; 0.000    ; 0.000   ;    ;      ;        ;                    ; launch edge time               ;
+; 2.580    ; 2.580   ;    ;      ;        ;                    ; clock path                     ;
+;   0.000  ;   0.000 ;    ;      ;        ;                    ; source latency                 ;
+;   0.000  ;   0.000 ;    ;      ; 1      ; PIN_E1             ; sys_clk                        ;
+;   0.000  ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|i                ;
+;   0.749  ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|o                ;
+;   0.971  ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; sys_clk~inputclkctrl|inclk[0]  ;
+;   0.971  ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2         ; sys_clk~inputclkctrl|outclk    ;
+;   1.913  ;   0.942 ; RR ; IC   ; 1      ; FF_X21_Y9_N25      ; bank[0]|clk                    ;
+;   2.580  ;   0.667 ; RR ; CELL ; 1      ; FF_X21_Y9_N25      ; bank[0]                        ;
+; 16.507   ; 13.927  ;    ;      ;        ;                    ; data path                      ;
+;   2.841  ;   0.261 ;    ; uTco ; 1      ; FF_X21_Y9_N25      ; bank[0]                        ;
+;   2.841  ;   0.000 ; FF ; CELL ; 134    ; FF_X21_Y9_N25      ; bank[0]|q                      ;
+;   4.616  ;   1.775 ; FF ; IC   ; 1      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|dataa   ;
+;   5.062  ;   0.446 ; FF ; CELL ; 2      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|combout ;
+;   5.389  ;   0.327 ; FF ; IC   ; 1      ; LCCOMB_X10_Y12_N24 ; reference_rom|Ram1~115|dataa   ;
+;   5.850  ;   0.461 ; FR ; CELL ; 1      ; LCCOMB_X10_Y12_N24 ; reference_rom|Ram1~115|combout ;
+;   6.086  ;   0.236 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|datad   ;
+;   6.263  ;   0.177 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|combout ;
+;   8.120  ;   1.857 ; RR ; IC   ; 1      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|datac   ;
+;   8.447  ;   0.327 ; RR ; CELL ; 3      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|combout ;
+;   9.650  ;   1.203 ; RR ; IC   ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|dataa   ;
+;   10.121 ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|combout ;
+;   11.717 ;   1.596 ; RR ; IC   ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|datac                 ;
+;   12.044 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|combout               ;
+;   13.204 ;   1.160 ; RR ; IC   ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|datac                 ;
+;   13.531 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|combout               ;
+;   15.523 ;   1.992 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|datab                 ;
+;   15.995 ;   0.472 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|combout               ;
+;   16.231 ;   0.236 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|datad                 ;
+;   16.408 ;   0.177 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|combout               ;
+;   16.408 ;   0.000 ; RR ; IC   ; 1      ; FF_X18_Y10_N9      ; failed|d                       ;
+;   16.507 ;   0.099 ; RR ; CELL ; 1      ; FF_X18_Y10_N9      ; failed                         ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+
++--------------------------------------------------------------------------------------------+
+; Data Required Path                                                                         ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                       ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; 20.000   ; 20.000  ;    ;      ;        ;                  ; latch edge time               ;
+; 22.494   ; 2.494   ;    ;      ;        ;                  ; clock path                    ;
+;   20.000 ;   0.000 ;    ;      ;        ;                  ; source latency                ;
+;   20.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; sys_clk                       ;
+;   20.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|i               ;
+;   20.749 ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|o               ;
+;   20.962 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; sys_clk~inputclkctrl|inclk[0] ;
+;   20.962 ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2       ; sys_clk~inputclkctrl|outclk   ;
+;   21.861 ;   0.899 ; RR ; IC   ; 1      ; FF_X18_Y10_N9    ; failed|clk                    ;
+;   22.479 ;   0.618 ; RR ; CELL ; 1      ; FF_X18_Y10_N9    ; failed                        ;
+;   22.494 ;   0.015 ;    ;      ;        ;                  ; clock pessimism               ;
+; 22.474   ; -0.020  ;    ;      ;        ;                  ; clock uncertainty             ;
+; 22.495   ; 0.021   ;    ; uTsu ; 1      ; FF_X18_Y10_N9    ; failed                        ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #6: Setup slack is 6.027 
+===============================================================================
++----------------------------------------+
+; Path Summary                           ;
++--------------------+-------------------+
+; Property           ; Value             ;
++--------------------+-------------------+
+; From Node          ; received_count[2] ;
+; To Node            ; failed            ;
+; Launch Clock       ; board_clk         ;
+; Latch Clock        ; board_clk         ;
+; Data Arrival Time  ; 16.468            ;
+; Data Required Time ; 22.495            ;
+; Slack              ; 6.027             ;
++--------------------+-------------------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Setup Relationship     ; 20.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.104 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 13.870 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 9     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.182       ; 45         ; 0.000 ; 0.960 ;
+;    Cell                ;        ; 3     ; 1.416       ; 54         ; 0.000 ; 0.749 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 10    ; 10.337      ; 74         ; 0.000 ; 1.992 ;
+;    Cell                ;        ; 11    ; 3.272       ; 23         ; 0.000 ; 0.472 ;
+;    uTco                ;        ; 1     ; 0.261       ; 1          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.112       ; 44         ; 0.000 ; 0.899 ;
+;    Cell                ;        ; 3     ; 1.367       ; 55         ; 0.000 ; 0.749 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-----------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                             ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                        ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; 0.000    ; 0.000   ;    ;      ;        ;                    ; launch edge time               ;
+; 2.598    ; 2.598   ;    ;      ;        ;                    ; clock path                     ;
+;   0.000  ;   0.000 ;    ;      ;        ;                    ; source latency                 ;
+;   0.000  ;   0.000 ;    ;      ; 1      ; PIN_E1             ; sys_clk                        ;
+;   0.000  ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|i                ;
+;   0.749  ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|o                ;
+;   0.971  ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; sys_clk~inputclkctrl|inclk[0]  ;
+;   0.971  ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2         ; sys_clk~inputclkctrl|outclk    ;
+;   1.931  ;   0.960 ; RR ; IC   ; 1      ; FF_X17_Y9_N21      ; received_count[2]|clk          ;
+;   2.598  ;   0.667 ; RR ; CELL ; 1      ; FF_X17_Y9_N21      ; received_count[2]              ;
+; 16.468   ; 13.870  ;    ;      ;        ;                    ; data path                      ;
+;   2.859  ;   0.261 ;    ; uTco ; 1      ; FF_X17_Y9_N21      ; received_count[2]              ;
+;   2.859  ;   0.000 ; RR ; CELL ; 146    ; FF_X17_Y9_N21      ; received_count[2]|q            ;
+;   4.603  ;   1.744 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N2  ; reference_rom|Ram1~112|datab   ;
+;   5.036  ;   0.433 ; RF ; CELL ; 2      ; LCCOMB_X10_Y12_N2  ; reference_rom|Ram1~112|combout ;
+;   5.308  ;   0.272 ; FF ; IC   ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|datad   ;
+;   5.476  ;   0.168 ; FR ; CELL ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|combout ;
+;   5.753  ;   0.277 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|dataa   ;
+;   6.224  ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|combout ;
+;   8.081  ;   1.857 ; RR ; IC   ; 1      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|datac   ;
+;   8.408  ;   0.327 ; RR ; CELL ; 3      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|combout ;
+;   9.611  ;   1.203 ; RR ; IC   ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|dataa   ;
+;   10.082 ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|combout ;
+;   11.678 ;   1.596 ; RR ; IC   ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|datac                 ;
+;   12.005 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|combout               ;
+;   13.165 ;   1.160 ; RR ; IC   ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|datac                 ;
+;   13.492 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|combout               ;
+;   15.484 ;   1.992 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|datab                 ;
+;   15.956 ;   0.472 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|combout               ;
+;   16.192 ;   0.236 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|datad                 ;
+;   16.369 ;   0.177 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|combout               ;
+;   16.369 ;   0.000 ; RR ; IC   ; 1      ; FF_X18_Y10_N9      ; failed|d                       ;
+;   16.468 ;   0.099 ; RR ; CELL ; 1      ; FF_X18_Y10_N9      ; failed                         ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+
++--------------------------------------------------------------------------------------------+
+; Data Required Path                                                                         ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                       ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; 20.000   ; 20.000  ;    ;      ;        ;                  ; latch edge time               ;
+; 22.494   ; 2.494   ;    ;      ;        ;                  ; clock path                    ;
+;   20.000 ;   0.000 ;    ;      ;        ;                  ; source latency                ;
+;   20.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; sys_clk                       ;
+;   20.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|i               ;
+;   20.749 ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|o               ;
+;   20.962 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; sys_clk~inputclkctrl|inclk[0] ;
+;   20.962 ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2       ; sys_clk~inputclkctrl|outclk   ;
+;   21.861 ;   0.899 ; RR ; IC   ; 1      ; FF_X18_Y10_N9    ; failed|clk                    ;
+;   22.479 ;   0.618 ; RR ; CELL ; 1      ; FF_X18_Y10_N9    ; failed                        ;
+;   22.494 ;   0.015 ;    ;      ;        ;                  ; clock pessimism               ;
+; 22.474   ; -0.020  ;    ;      ;        ;                  ; clock uncertainty             ;
+; 22.495   ; 0.021   ;    ; uTsu ; 1      ; FF_X18_Y10_N9    ; failed                        ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #7: Setup slack is 6.037 
+===============================================================================
++----------------------------------------+
+; Path Summary                           ;
++--------------------+-------------------+
+; Property           ; Value             ;
++--------------------+-------------------+
+; From Node          ; received_count[2] ;
+; To Node            ; failed            ;
+; Launch Clock       ; board_clk         ;
+; Latch Clock        ; board_clk         ;
+; Data Arrival Time  ; 16.458            ;
+; Data Required Time ; 22.495            ;
+; Slack              ; 6.037             ;
++--------------------+-------------------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Setup Relationship     ; 20.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.104 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 13.860 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 9     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.182       ; 45         ; 0.000 ; 0.960 ;
+;    Cell                ;        ; 3     ; 1.416       ; 54         ; 0.000 ; 0.749 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 10    ; 10.349      ; 74         ; 0.000 ; 1.992 ;
+;    Cell                ;        ; 11    ; 3.250       ; 23         ; 0.000 ; 0.472 ;
+;    uTco                ;        ; 1     ; 0.261       ; 1          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.112       ; 44         ; 0.000 ; 0.899 ;
+;    Cell                ;        ; 3     ; 1.367       ; 55         ; 0.000 ; 0.749 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-----------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                             ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                        ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; 0.000    ; 0.000   ;    ;      ;        ;                    ; launch edge time               ;
+; 2.598    ; 2.598   ;    ;      ;        ;                    ; clock path                     ;
+;   0.000  ;   0.000 ;    ;      ;        ;                    ; source latency                 ;
+;   0.000  ;   0.000 ;    ;      ; 1      ; PIN_E1             ; sys_clk                        ;
+;   0.000  ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|i                ;
+;   0.749  ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|o                ;
+;   0.971  ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; sys_clk~inputclkctrl|inclk[0]  ;
+;   0.971  ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2         ; sys_clk~inputclkctrl|outclk    ;
+;   1.931  ;   0.960 ; RR ; IC   ; 1      ; FF_X17_Y9_N21      ; received_count[2]|clk          ;
+;   2.598  ;   0.667 ; RR ; CELL ; 1      ; FF_X17_Y9_N21      ; received_count[2]              ;
+; 16.458   ; 13.860  ;    ;      ;        ;                    ; data path                      ;
+;   2.859  ;   0.261 ;    ; uTco ; 1      ; FF_X17_Y9_N21      ; received_count[2]              ;
+;   2.859  ;   0.000 ; RR ; CELL ; 146    ; FF_X17_Y9_N21      ; received_count[2]|q            ;
+;   4.601  ;   1.742 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|datab   ;
+;   5.013  ;   0.412 ; RF ; CELL ; 2      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|combout ;
+;   5.340  ;   0.327 ; FF ; IC   ; 1      ; LCCOMB_X10_Y12_N24 ; reference_rom|Ram1~115|dataa   ;
+;   5.801  ;   0.461 ; FR ; CELL ; 1      ; LCCOMB_X10_Y12_N24 ; reference_rom|Ram1~115|combout ;
+;   6.037  ;   0.236 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|datad   ;
+;   6.214  ;   0.177 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|combout ;
+;   8.071  ;   1.857 ; RR ; IC   ; 1      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|datac   ;
+;   8.398  ;   0.327 ; RR ; CELL ; 3      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|combout ;
+;   9.601  ;   1.203 ; RR ; IC   ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|dataa   ;
+;   10.072 ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|combout ;
+;   11.668 ;   1.596 ; RR ; IC   ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|datac                 ;
+;   11.995 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|combout               ;
+;   13.155 ;   1.160 ; RR ; IC   ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|datac                 ;
+;   13.482 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|combout               ;
+;   15.474 ;   1.992 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|datab                 ;
+;   15.946 ;   0.472 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|combout               ;
+;   16.182 ;   0.236 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|datad                 ;
+;   16.359 ;   0.177 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|combout               ;
+;   16.359 ;   0.000 ; RR ; IC   ; 1      ; FF_X18_Y10_N9      ; failed|d                       ;
+;   16.458 ;   0.099 ; RR ; CELL ; 1      ; FF_X18_Y10_N9      ; failed                         ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+
++--------------------------------------------------------------------------------------------+
+; Data Required Path                                                                         ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                       ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; 20.000   ; 20.000  ;    ;      ;        ;                  ; latch edge time               ;
+; 22.494   ; 2.494   ;    ;      ;        ;                  ; clock path                    ;
+;   20.000 ;   0.000 ;    ;      ;        ;                  ; source latency                ;
+;   20.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; sys_clk                       ;
+;   20.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|i               ;
+;   20.749 ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|o               ;
+;   20.962 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; sys_clk~inputclkctrl|inclk[0] ;
+;   20.962 ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2       ; sys_clk~inputclkctrl|outclk   ;
+;   21.861 ;   0.899 ; RR ; IC   ; 1      ; FF_X18_Y10_N9    ; failed|clk                    ;
+;   22.479 ;   0.618 ; RR ; CELL ; 1      ; FF_X18_Y10_N9    ; failed                        ;
+;   22.494 ;   0.015 ;    ;      ;        ;                  ; clock pessimism               ;
+; 22.474   ; -0.020  ;    ;      ;        ;                  ; clock uncertainty             ;
+; 22.495   ; 0.021   ;    ; uTsu ; 1      ; FF_X18_Y10_N9    ; failed                        ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #8: Setup slack is 6.085 
+===============================================================================
++----------------------------------------+
+; Path Summary                           ;
++--------------------+-------------------+
+; Property           ; Value             ;
++--------------------+-------------------+
+; From Node          ; received_count[1] ;
+; To Node            ; failed            ;
+; Launch Clock       ; board_clk         ;
+; Latch Clock        ; board_clk         ;
+; Data Arrival Time  ; 16.410            ;
+; Data Required Time ; 22.495            ;
+; Slack              ; 6.085             ;
++--------------------+-------------------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Setup Relationship     ; 20.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.104 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 13.812 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 9     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.182       ; 45         ; 0.000 ; 0.960 ;
+;    Cell                ;        ; 3     ; 1.416       ; 54         ; 0.000 ; 0.749 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 10    ; 10.232      ; 74         ; 0.000 ; 1.992 ;
+;    Cell                ;        ; 11    ; 3.319       ; 24         ; 0.000 ; 0.472 ;
+;    uTco                ;        ; 1     ; 0.261       ; 1          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.112       ; 44         ; 0.000 ; 0.899 ;
+;    Cell                ;        ; 3     ; 1.367       ; 55         ; 0.000 ; 0.749 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-----------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                             ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                        ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; 0.000    ; 0.000   ;    ;      ;        ;                    ; launch edge time               ;
+; 2.598    ; 2.598   ;    ;      ;        ;                    ; clock path                     ;
+;   0.000  ;   0.000 ;    ;      ;        ;                    ; source latency                 ;
+;   0.000  ;   0.000 ;    ;      ; 1      ; PIN_E1             ; sys_clk                        ;
+;   0.000  ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|i                ;
+;   0.749  ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|o                ;
+;   0.971  ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; sys_clk~inputclkctrl|inclk[0]  ;
+;   0.971  ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2         ; sys_clk~inputclkctrl|outclk    ;
+;   1.931  ;   0.960 ; RR ; IC   ; 1      ; FF_X17_Y9_N19      ; received_count[1]|clk          ;
+;   2.598  ;   0.667 ; RR ; CELL ; 1      ; FF_X17_Y9_N19      ; received_count[1]              ;
+; 16.410   ; 13.812  ;    ;      ;        ;                    ; data path                      ;
+;   2.859  ;   0.261 ;    ; uTco ; 1      ; FF_X17_Y9_N19      ; received_count[1]              ;
+;   2.859  ;   0.000 ; RR ; CELL ; 159    ; FF_X17_Y9_N19      ; received_count[1]|q            ;
+;   4.481  ;   1.622 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|datad   ;
+;   4.658  ;   0.177 ; RR ; CELL ; 2      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|combout ;
+;   4.947  ;   0.289 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|dataa   ;
+;   5.418  ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|combout ;
+;   5.695  ;   0.277 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|dataa   ;
+;   6.166  ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|combout ;
+;   8.023  ;   1.857 ; RR ; IC   ; 1      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|datac   ;
+;   8.350  ;   0.327 ; RR ; CELL ; 3      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|combout ;
+;   9.553  ;   1.203 ; RR ; IC   ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|dataa   ;
+;   10.024 ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X18_Y17_N14 ; reference_rom|Ram1~306|combout ;
+;   11.620 ;   1.596 ; RR ; IC   ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|datac                 ;
+;   11.947 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|combout               ;
+;   13.107 ;   1.160 ; RR ; IC   ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|datac                 ;
+;   13.434 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|combout               ;
+;   15.426 ;   1.992 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|datab                 ;
+;   15.898 ;   0.472 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|combout               ;
+;   16.134 ;   0.236 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|datad                 ;
+;   16.311 ;   0.177 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|combout               ;
+;   16.311 ;   0.000 ; RR ; IC   ; 1      ; FF_X18_Y10_N9      ; failed|d                       ;
+;   16.410 ;   0.099 ; RR ; CELL ; 1      ; FF_X18_Y10_N9      ; failed                         ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+
++--------------------------------------------------------------------------------------------+
+; Data Required Path                                                                         ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                       ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; 20.000   ; 20.000  ;    ;      ;        ;                  ; latch edge time               ;
+; 22.494   ; 2.494   ;    ;      ;        ;                  ; clock path                    ;
+;   20.000 ;   0.000 ;    ;      ;        ;                  ; source latency                ;
+;   20.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; sys_clk                       ;
+;   20.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|i               ;
+;   20.749 ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|o               ;
+;   20.962 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; sys_clk~inputclkctrl|inclk[0] ;
+;   20.962 ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2       ; sys_clk~inputclkctrl|outclk   ;
+;   21.861 ;   0.899 ; RR ; IC   ; 1      ; FF_X18_Y10_N9    ; failed|clk                    ;
+;   22.479 ;   0.618 ; RR ; CELL ; 1      ; FF_X18_Y10_N9    ; failed                        ;
+;   22.494 ;   0.015 ;    ;      ;        ;                  ; clock pessimism               ;
+; 22.474   ; -0.020  ;    ;      ;        ;                  ; clock uncertainty             ;
+; 22.495   ; 0.021   ;    ; uTsu ; 1      ; FF_X18_Y10_N9    ; failed                        ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #9: Setup slack is 6.096 
+===============================================================================
++--------------------------------+
+; Path Summary                   ;
++--------------------+-----------+
+; Property           ; Value     ;
++--------------------+-----------+
+; From Node          ; bank[0]   ;
+; To Node            ; failed    ;
+; Launch Clock       ; board_clk ;
+; Latch Clock        ; board_clk ;
+; Data Arrival Time  ; 16.399    ;
+; Data Required Time ; 22.495    ;
+; Slack              ; 6.096     ;
++--------------------+-----------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Setup Relationship     ; 20.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.086 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 13.819 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 9     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.164       ; 45         ; 0.000 ; 0.942 ;
+;    Cell                ;        ; 3     ; 1.416       ; 54         ; 0.000 ; 0.749 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 10    ; 9.962       ; 72         ; 0.000 ; 1.992 ;
+;    Cell                ;        ; 11    ; 3.596       ; 26         ; 0.000 ; 0.472 ;
+;    uTco                ;        ; 1     ; 0.261       ; 1          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.112       ; 44         ; 0.000 ; 0.899 ;
+;    Cell                ;        ; 3     ; 1.367       ; 55         ; 0.000 ; 0.749 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-----------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                             ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                        ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; 0.000    ; 0.000   ;    ;      ;        ;                    ; launch edge time               ;
+; 2.580    ; 2.580   ;    ;      ;        ;                    ; clock path                     ;
+;   0.000  ;   0.000 ;    ;      ;        ;                    ; source latency                 ;
+;   0.000  ;   0.000 ;    ;      ; 1      ; PIN_E1             ; sys_clk                        ;
+;   0.000  ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|i                ;
+;   0.749  ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|o                ;
+;   0.971  ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; sys_clk~inputclkctrl|inclk[0]  ;
+;   0.971  ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2         ; sys_clk~inputclkctrl|outclk    ;
+;   1.913  ;   0.942 ; RR ; IC   ; 1      ; FF_X21_Y9_N25      ; bank[0]|clk                    ;
+;   2.580  ;   0.667 ; RR ; CELL ; 1      ; FF_X21_Y9_N25      ; bank[0]                        ;
+; 16.399   ; 13.819  ;    ;      ;        ;                    ; data path                      ;
+;   2.841  ;   0.261 ;    ; uTco ; 1      ; FF_X21_Y9_N25      ; bank[0]                        ;
+;   2.841  ;   0.000 ; RR ; CELL ; 134    ; FF_X21_Y9_N25      ; bank[0]|q                      ;
+;   4.624  ;   1.783 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|dataa   ;
+;   5.077  ;   0.453 ; RR ; CELL ; 2      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|combout ;
+;   5.366  ;   0.289 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|dataa   ;
+;   5.837  ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|combout ;
+;   6.114  ;   0.277 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|dataa   ;
+;   6.585  ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|combout ;
+;   8.442  ;   1.857 ; RR ; IC   ; 1      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|datac   ;
+;   8.769  ;   0.327 ; RR ; CELL ; 3      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|combout ;
+;   9.575  ;   0.806 ; RR ; IC   ; 1      ; LCCOMB_X23_Y15_N30 ; reference_rom|Ram1~319|datac   ;
+;   9.902  ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X23_Y15_N30 ; reference_rom|Ram1~319|combout ;
+;   11.464 ;   1.562 ; RR ; IC   ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|datab                 ;
+;   11.936 ;   0.472 ; RR ; CELL ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|combout               ;
+;   13.096 ;   1.160 ; RR ; IC   ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|datac                 ;
+;   13.423 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|combout               ;
+;   15.415 ;   1.992 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|datab                 ;
+;   15.887 ;   0.472 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|combout               ;
+;   16.123 ;   0.236 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|datad                 ;
+;   16.300 ;   0.177 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|combout               ;
+;   16.300 ;   0.000 ; RR ; IC   ; 1      ; FF_X18_Y10_N9      ; failed|d                       ;
+;   16.399 ;   0.099 ; RR ; CELL ; 1      ; FF_X18_Y10_N9      ; failed                         ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+
++--------------------------------------------------------------------------------------------+
+; Data Required Path                                                                         ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                       ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; 20.000   ; 20.000  ;    ;      ;        ;                  ; latch edge time               ;
+; 22.494   ; 2.494   ;    ;      ;        ;                  ; clock path                    ;
+;   20.000 ;   0.000 ;    ;      ;        ;                  ; source latency                ;
+;   20.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; sys_clk                       ;
+;   20.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|i               ;
+;   20.749 ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|o               ;
+;   20.962 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; sys_clk~inputclkctrl|inclk[0] ;
+;   20.962 ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2       ; sys_clk~inputclkctrl|outclk   ;
+;   21.861 ;   0.899 ; RR ; IC   ; 1      ; FF_X18_Y10_N9    ; failed|clk                    ;
+;   22.479 ;   0.618 ; RR ; CELL ; 1      ; FF_X18_Y10_N9    ; failed                        ;
+;   22.494 ;   0.015 ;    ;      ;        ;                  ; clock pessimism               ;
+; 22.474   ; -0.020  ;    ;      ;        ;                  ; clock uncertainty             ;
+; 22.495   ; 0.021   ;    ; uTsu ; 1      ; FF_X18_Y10_N9    ; failed                        ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #10: Setup slack is 6.162 
+===============================================================================
++----------------------------------------+
+; Path Summary                           ;
++--------------------+-------------------+
+; Property           ; Value             ;
++--------------------+-------------------+
+; From Node          ; received_count[2] ;
+; To Node            ; failed            ;
+; Launch Clock       ; board_clk         ;
+; Latch Clock        ; board_clk         ;
+; Data Arrival Time  ; 16.333            ;
+; Data Required Time ; 22.495            ;
+; Slack              ; 6.162             ;
++--------------------+-------------------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Setup Relationship     ; 20.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.104 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 13.735 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 9     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.182       ; 45         ; 0.000 ; 0.960 ;
+;    Cell                ;        ; 3     ; 1.416       ; 54         ; 0.000 ; 0.749 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 10    ; 9.921       ; 72         ; 0.000 ; 1.992 ;
+;    Cell                ;        ; 11    ; 3.553       ; 25         ; 0.000 ; 0.472 ;
+;    uTco                ;        ; 1     ; 0.261       ; 1          ; 0.261 ; 0.261 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 1.112       ; 44         ; 0.000 ; 0.899 ;
+;    Cell                ;        ; 3     ; 1.367       ; 55         ; 0.000 ; 0.749 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++-----------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                             ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                        ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+; 0.000    ; 0.000   ;    ;      ;        ;                    ; launch edge time               ;
+; 2.598    ; 2.598   ;    ;      ;        ;                    ; clock path                     ;
+;   0.000  ;   0.000 ;    ;      ;        ;                    ; source latency                 ;
+;   0.000  ;   0.000 ;    ;      ; 1      ; PIN_E1             ; sys_clk                        ;
+;   0.000  ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|i                ;
+;   0.749  ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8   ; sys_clk~input|o                ;
+;   0.971  ;   0.222 ; RR ; IC   ; 1      ; CLKCTRL_G2         ; sys_clk~inputclkctrl|inclk[0]  ;
+;   0.971  ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2         ; sys_clk~inputclkctrl|outclk    ;
+;   1.931  ;   0.960 ; RR ; IC   ; 1      ; FF_X17_Y9_N21      ; received_count[2]|clk          ;
+;   2.598  ;   0.667 ; RR ; CELL ; 1      ; FF_X17_Y9_N21      ; received_count[2]              ;
+; 16.333   ; 13.735  ;    ;      ;        ;                    ; data path                      ;
+;   2.859  ;   0.261 ;    ; uTco ; 1      ; FF_X17_Y9_N21      ; received_count[2]              ;
+;   2.859  ;   0.000 ; RR ; CELL ; 146    ; FF_X17_Y9_N21      ; received_count[2]|q            ;
+;   4.601  ;   1.742 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|datab   ;
+;   5.011  ;   0.410 ; RR ; CELL ; 2      ; LCCOMB_X10_Y12_N12 ; reference_rom|Ram1~113|combout ;
+;   5.300  ;   0.289 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|dataa   ;
+;   5.771  ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N30 ; reference_rom|Ram1~114|combout ;
+;   6.048  ;   0.277 ; RR ; IC   ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|dataa   ;
+;   6.519  ;   0.471 ; RR ; CELL ; 1      ; LCCOMB_X10_Y12_N26 ; reference_rom|Ram1~116|combout ;
+;   8.376  ;   1.857 ; RR ; IC   ; 1      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|datac   ;
+;   8.703  ;   0.327 ; RR ; CELL ; 3      ; LCCOMB_X22_Y16_N10 ; reference_rom|Ram1~117|combout ;
+;   9.509  ;   0.806 ; RR ; IC   ; 1      ; LCCOMB_X23_Y15_N30 ; reference_rom|Ram1~319|datac   ;
+;   9.836  ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X23_Y15_N30 ; reference_rom|Ram1~319|combout ;
+;   11.398 ;   1.562 ; RR ; IC   ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|datab                 ;
+;   11.870 ;   0.472 ; RR ; CELL ; 1      ; LCCOMB_X10_Y13_N12 ; failed~3|combout               ;
+;   13.030 ;   1.160 ; RR ; IC   ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|datac                 ;
+;   13.357 ;   0.327 ; RR ; CELL ; 1      ; LCCOMB_X12_Y16_N14 ; failed~4|combout               ;
+;   15.349 ;   1.992 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|datab                 ;
+;   15.821 ;   0.472 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N0  ; failed~5|combout               ;
+;   16.057 ;   0.236 ; RR ; IC   ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|datad                 ;
+;   16.234 ;   0.177 ; RR ; CELL ; 1      ; LCCOMB_X18_Y10_N8  ; failed~6|combout               ;
+;   16.234 ;   0.000 ; RR ; IC   ; 1      ; FF_X18_Y10_N9      ; failed|d                       ;
+;   16.333 ;   0.099 ; RR ; CELL ; 1      ; FF_X18_Y10_N9      ; failed                         ;
++----------+---------+----+------+--------+--------------------+--------------------------------+
+
++--------------------------------------------------------------------------------------------+
+; Data Required Path                                                                         ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                       ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+; 20.000   ; 20.000  ;    ;      ;        ;                  ; latch edge time               ;
+; 22.494   ; 2.494   ;    ;      ;        ;                  ; clock path                    ;
+;   20.000 ;   0.000 ;    ;      ;        ;                  ; source latency                ;
+;   20.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; sys_clk                       ;
+;   20.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|i               ;
+;   20.749 ;   0.749 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; sys_clk~input|o               ;
+;   20.962 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; sys_clk~inputclkctrl|inclk[0] ;
+;   20.962 ;   0.000 ; RR ; CELL ; 1199   ; CLKCTRL_G2       ; sys_clk~inputclkctrl|outclk   ;
+;   21.861 ;   0.899 ; RR ; IC   ; 1      ; FF_X18_Y10_N9    ; failed|clk                    ;
+;   22.479 ;   0.618 ; RR ; CELL ; 1      ; FF_X18_Y10_N9    ; failed                        ;
+;   22.494 ;   0.015 ;    ;      ;        ;                  ; clock pessimism               ;
+; 22.474   ; -0.020  ;    ;      ;        ;                  ; clock uncertainty             ;
+; 22.495   ; 0.021   ;    ; uTsu ; 1      ; FF_X18_Y10_N9    ; failed                        ;
++----------+---------+----+------+--------+------------------+-------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+

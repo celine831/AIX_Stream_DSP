@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at fir_pipeline.v(22): object "LEVELS" differs only in case from object "levels" in the same scope
+Info (10281): Verilog HDL Declaration information at board_selftest.v(5): object "DONE" differs only in case from object "done" in the same scope

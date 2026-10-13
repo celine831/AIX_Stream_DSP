@@ -1,0 +1,484 @@
+----------------
+; Command Info ;
+----------------
+Report Timing: Found 5 removal paths (0 violated).  Worst case slack is 2.798 
+
+Tcl Command:
+    report_timing -removal -file reports/accelerator_removal.txt -npaths 5 -detail full_path
+
+Options:
+    -removal 
+    -npaths 5 
+    -detail full_path 
+    -file {reports/accelerator_removal.txt} 
+
+Delay Model:
+    Slow 1200mV 85C Model
+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Summary of Paths                                                                                                                                 ;
++-------+----------------------------------+---------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                        ; To Node                         ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+----------------------------------+---------------------------------+--------------+-------------+--------------+------------+------------+
+; 2.798 ; reset_sync:core_reset|sync_ff[1] ; fir_pipeline:fir|history[3][10] ; core_clk     ; core_clk    ; 0.000        ; 0.079      ; 3.089      ;
+; 2.798 ; reset_sync:core_reset|sync_ff[1] ; fir_pipeline:fir|history[0][2]  ; core_clk     ; core_clk    ; 0.000        ; 0.079      ; 3.089      ;
+; 2.798 ; reset_sync:core_reset|sync_ff[1] ; fir_pipeline:fir|history[1][2]  ; core_clk     ; core_clk    ; 0.000        ; 0.079      ; 3.089      ;
+; 2.798 ; reset_sync:core_reset|sync_ff[1] ; fir_pipeline:fir|history[2][2]  ; core_clk     ; core_clk    ; 0.000        ; 0.079      ; 3.089      ;
+; 2.798 ; reset_sync:core_reset|sync_ff[1] ; fir_pipeline:fir|history[3][2]  ; core_clk     ; core_clk    ; 0.000        ; 0.079      ; 3.089      ;
++-------+----------------------------------+---------------------------------+--------------+-------------+--------------+------------+------------+
+
+Path #1: Removal slack is 2.798 
+===============================================================================
++-------------------------------------------------------+
+; Path Summary                                          ;
++--------------------+----------------------------------+
+; Property           ; Value                            ;
++--------------------+----------------------------------+
+; From Node          ; reset_sync:core_reset|sync_ff[1] ;
+; To Node            ; fir_pipeline:fir|history[3][10]  ;
+; Launch Clock       ; core_clk                         ;
+; Latch Clock        ; core_clk                         ;
+; Data Arrival Time  ; 5.596                            ;
+; Data Required Time ; 2.798                            ;
+; Slack              ; 2.798                            ;
++--------------------+----------------------------------+
+
++-----------------------------------------------------------------------------------+
+; Statistics                                                                        ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+; Property               ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+; Removal Relationship   ; 0.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; 0.079 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 3.089 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+; Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;       ;       ;             ;            ;       ;       ;
+;   Clock                ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 3     ; 1.123       ; 44         ; 0.000 ; 0.910 ;
+;    Cell                ;       ; 3     ; 1.384       ; 55         ; 0.000 ; 0.766 ;
+;   Data                 ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 2     ; 1.990       ; 64         ; 0.920 ; 1.070 ;
+;    Cell                ;       ; 3     ; 0.838       ; 27         ; 0.000 ; 0.838 ;
+;    uTco                ;       ; 1     ; 0.261       ; 8          ; 0.261 ; 0.261 ;
+;  Required Path         ;       ;       ;             ;            ;       ;       ;
+;   Clock                ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 3     ; 1.162       ; 44         ; 0.000 ; 0.940 ;
+;    Cell                ;       ; 3     ; 1.433       ; 55         ; 0.000 ; 0.766 ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++----------------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                                  ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+; Total   ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                                ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+; 0.000   ; 0.000   ;    ;      ;        ;                  ; launch edge time                       ;
+; 2.507   ; 2.507   ;    ;      ;        ;                  ; clock path                             ;
+;   0.000 ;   0.000 ;    ;      ;        ;                  ; source latency                         ;
+;   0.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; aclk                                   ;
+;   0.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|i                           ;
+;   0.766 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|o                           ;
+;   0.979 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; aclk~inputclkctrl|inclk[0]             ;
+;   0.979 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2       ; aclk~inputclkctrl|outclk               ;
+;   1.889 ;   0.910 ; RR ; IC   ; 1      ; FF_X33_Y12_N11   ; core_reset|sync_ff[1]|clk              ;
+;   2.507 ;   0.618 ; RR ; CELL ; 1      ; FF_X33_Y12_N11   ; reset_sync:core_reset|sync_ff[1]       ;
+; 5.596   ; 3.089   ;    ;      ;        ;                  ; data path                              ;
+;   2.768 ;   0.261 ;    ; uTco ; 1      ; FF_X33_Y12_N11   ; reset_sync:core_reset|sync_ff[1]       ;
+;   2.768 ;   0.000 ; FF ; CELL ; 130    ; FF_X33_Y12_N11   ; core_reset|sync_ff[1]|q                ;
+;   3.838 ;   1.070 ; FF ; IC   ; 1      ; CLKCTRL_G8       ; core_reset|sync_ff[1]~clkctrl|inclk[0] ;
+;   3.838 ;   0.000 ; FF ; CELL ; 444    ; CLKCTRL_G8       ; core_reset|sync_ff[1]~clkctrl|outclk   ;
+;   4.758 ;   0.920 ; FF ; IC   ; 1      ; FF_X32_Y11_N21   ; fir|history[3][10]|clrn                ;
+;   5.596 ;   0.838 ; FF ; CELL ; 1      ; FF_X32_Y11_N21   ; fir_pipeline:fir|history[3][10]        ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+
++----------------------------------------------------------------------------------------------+
+; Data Required Path                                                                           ;
++---------+----------+----+------+--------+------------------+---------------------------------+
+; Total   ; Incr     ; RF ; Type ; Fanout ; Location         ; Element                         ;
++---------+----------+----+------+--------+------------------+---------------------------------+
+; 0.000   ; 0.000    ;    ;      ;        ;                  ; latch edge time                 ;
+; 2.586   ; 2.586    ;    ;      ;        ;                  ; clock path                      ;
+;   0.000 ;   0.000  ;    ;      ;        ;                  ; source latency                  ;
+;   0.000 ;   0.000  ;    ;      ; 1      ; PIN_E1           ; aclk                            ;
+;   0.000 ;   0.000  ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|i                    ;
+;   0.766 ;   0.766  ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|o                    ;
+;   0.988 ;   0.222  ; RR ; IC   ; 1      ; CLKCTRL_G2       ; aclk~inputclkctrl|inclk[0]      ;
+;   0.988 ;   0.000  ; RR ; CELL ; 1264   ; CLKCTRL_G2       ; aclk~inputclkctrl|outclk        ;
+;   1.928 ;   0.940  ; RR ; IC   ; 1      ; FF_X32_Y11_N21   ; fir|history[3][10]|clk          ;
+;   2.595 ;   0.667  ; RR ; CELL ; 1      ; FF_X32_Y11_N21   ; fir_pipeline:fir|history[3][10] ;
+;   2.586 ;   -0.009 ;    ;      ;        ;                  ; clock pessimism                 ;
+; 2.586   ; 0.000    ;    ;      ;        ;                  ; clock uncertainty               ;
+; 2.798   ; 0.212    ;    ; uTh  ; 1      ; FF_X32_Y11_N21   ; fir_pipeline:fir|history[3][10] ;
++---------+----------+----+------+--------+------------------+---------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #2: Removal slack is 2.798 
+===============================================================================
++-------------------------------------------------------+
+; Path Summary                                          ;
++--------------------+----------------------------------+
+; Property           ; Value                            ;
++--------------------+----------------------------------+
+; From Node          ; reset_sync:core_reset|sync_ff[1] ;
+; To Node            ; fir_pipeline:fir|history[0][2]   ;
+; Launch Clock       ; core_clk                         ;
+; Latch Clock        ; core_clk                         ;
+; Data Arrival Time  ; 5.596                            ;
+; Data Required Time ; 2.798                            ;
+; Slack              ; 2.798                            ;
++--------------------+----------------------------------+
+
++-----------------------------------------------------------------------------------+
+; Statistics                                                                        ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+; Property               ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+; Removal Relationship   ; 0.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; 0.079 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 3.089 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+; Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;       ;       ;             ;            ;       ;       ;
+;   Clock                ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 3     ; 1.123       ; 44         ; 0.000 ; 0.910 ;
+;    Cell                ;       ; 3     ; 1.384       ; 55         ; 0.000 ; 0.766 ;
+;   Data                 ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 2     ; 1.990       ; 64         ; 0.920 ; 1.070 ;
+;    Cell                ;       ; 3     ; 0.838       ; 27         ; 0.000 ; 0.838 ;
+;    uTco                ;       ; 1     ; 0.261       ; 8          ; 0.261 ; 0.261 ;
+;  Required Path         ;       ;       ;             ;            ;       ;       ;
+;   Clock                ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 3     ; 1.162       ; 44         ; 0.000 ; 0.940 ;
+;    Cell                ;       ; 3     ; 1.433       ; 55         ; 0.000 ; 0.766 ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++----------------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                                  ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+; Total   ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                                ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+; 0.000   ; 0.000   ;    ;      ;        ;                  ; launch edge time                       ;
+; 2.507   ; 2.507   ;    ;      ;        ;                  ; clock path                             ;
+;   0.000 ;   0.000 ;    ;      ;        ;                  ; source latency                         ;
+;   0.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; aclk                                   ;
+;   0.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|i                           ;
+;   0.766 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|o                           ;
+;   0.979 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; aclk~inputclkctrl|inclk[0]             ;
+;   0.979 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2       ; aclk~inputclkctrl|outclk               ;
+;   1.889 ;   0.910 ; RR ; IC   ; 1      ; FF_X33_Y12_N11   ; core_reset|sync_ff[1]|clk              ;
+;   2.507 ;   0.618 ; RR ; CELL ; 1      ; FF_X33_Y12_N11   ; reset_sync:core_reset|sync_ff[1]       ;
+; 5.596   ; 3.089   ;    ;      ;        ;                  ; data path                              ;
+;   2.768 ;   0.261 ;    ; uTco ; 1      ; FF_X33_Y12_N11   ; reset_sync:core_reset|sync_ff[1]       ;
+;   2.768 ;   0.000 ; FF ; CELL ; 130    ; FF_X33_Y12_N11   ; core_reset|sync_ff[1]|q                ;
+;   3.838 ;   1.070 ; FF ; IC   ; 1      ; CLKCTRL_G8       ; core_reset|sync_ff[1]~clkctrl|inclk[0] ;
+;   3.838 ;   0.000 ; FF ; CELL ; 444    ; CLKCTRL_G8       ; core_reset|sync_ff[1]~clkctrl|outclk   ;
+;   4.758 ;   0.920 ; FF ; IC   ; 1      ; FF_X32_Y11_N27   ; fir|history[0][2]|clrn                 ;
+;   5.596 ;   0.838 ; FF ; CELL ; 1      ; FF_X32_Y11_N27   ; fir_pipeline:fir|history[0][2]         ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+
++---------------------------------------------------------------------------------------------+
+; Data Required Path                                                                          ;
++---------+----------+----+------+--------+------------------+--------------------------------+
+; Total   ; Incr     ; RF ; Type ; Fanout ; Location         ; Element                        ;
++---------+----------+----+------+--------+------------------+--------------------------------+
+; 0.000   ; 0.000    ;    ;      ;        ;                  ; latch edge time                ;
+; 2.586   ; 2.586    ;    ;      ;        ;                  ; clock path                     ;
+;   0.000 ;   0.000  ;    ;      ;        ;                  ; source latency                 ;
+;   0.000 ;   0.000  ;    ;      ; 1      ; PIN_E1           ; aclk                           ;
+;   0.000 ;   0.000  ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|i                   ;
+;   0.766 ;   0.766  ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|o                   ;
+;   0.988 ;   0.222  ; RR ; IC   ; 1      ; CLKCTRL_G2       ; aclk~inputclkctrl|inclk[0]     ;
+;   0.988 ;   0.000  ; RR ; CELL ; 1264   ; CLKCTRL_G2       ; aclk~inputclkctrl|outclk       ;
+;   1.928 ;   0.940  ; RR ; IC   ; 1      ; FF_X32_Y11_N27   ; fir|history[0][2]|clk          ;
+;   2.595 ;   0.667  ; RR ; CELL ; 1      ; FF_X32_Y11_N27   ; fir_pipeline:fir|history[0][2] ;
+;   2.586 ;   -0.009 ;    ;      ;        ;                  ; clock pessimism                ;
+; 2.586   ; 0.000    ;    ;      ;        ;                  ; clock uncertainty              ;
+; 2.798   ; 0.212    ;    ; uTh  ; 1      ; FF_X32_Y11_N27   ; fir_pipeline:fir|history[0][2] ;
++---------+----------+----+------+--------+------------------+--------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #3: Removal slack is 2.798 
+===============================================================================
++-------------------------------------------------------+
+; Path Summary                                          ;
++--------------------+----------------------------------+
+; Property           ; Value                            ;
++--------------------+----------------------------------+
+; From Node          ; reset_sync:core_reset|sync_ff[1] ;
+; To Node            ; fir_pipeline:fir|history[1][2]   ;
+; Launch Clock       ; core_clk                         ;
+; Latch Clock        ; core_clk                         ;
+; Data Arrival Time  ; 5.596                            ;
+; Data Required Time ; 2.798                            ;
+; Slack              ; 2.798                            ;
++--------------------+----------------------------------+
+
++-----------------------------------------------------------------------------------+
+; Statistics                                                                        ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+; Property               ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+; Removal Relationship   ; 0.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; 0.079 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 3.089 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+; Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;       ;       ;             ;            ;       ;       ;
+;   Clock                ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 3     ; 1.123       ; 44         ; 0.000 ; 0.910 ;
+;    Cell                ;       ; 3     ; 1.384       ; 55         ; 0.000 ; 0.766 ;
+;   Data                 ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 2     ; 1.990       ; 64         ; 0.920 ; 1.070 ;
+;    Cell                ;       ; 3     ; 0.838       ; 27         ; 0.000 ; 0.838 ;
+;    uTco                ;       ; 1     ; 0.261       ; 8          ; 0.261 ; 0.261 ;
+;  Required Path         ;       ;       ;             ;            ;       ;       ;
+;   Clock                ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 3     ; 1.162       ; 44         ; 0.000 ; 0.940 ;
+;    Cell                ;       ; 3     ; 1.433       ; 55         ; 0.000 ; 0.766 ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++----------------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                                  ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+; Total   ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                                ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+; 0.000   ; 0.000   ;    ;      ;        ;                  ; launch edge time                       ;
+; 2.507   ; 2.507   ;    ;      ;        ;                  ; clock path                             ;
+;   0.000 ;   0.000 ;    ;      ;        ;                  ; source latency                         ;
+;   0.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; aclk                                   ;
+;   0.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|i                           ;
+;   0.766 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|o                           ;
+;   0.979 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; aclk~inputclkctrl|inclk[0]             ;
+;   0.979 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2       ; aclk~inputclkctrl|outclk               ;
+;   1.889 ;   0.910 ; RR ; IC   ; 1      ; FF_X33_Y12_N11   ; core_reset|sync_ff[1]|clk              ;
+;   2.507 ;   0.618 ; RR ; CELL ; 1      ; FF_X33_Y12_N11   ; reset_sync:core_reset|sync_ff[1]       ;
+; 5.596   ; 3.089   ;    ;      ;        ;                  ; data path                              ;
+;   2.768 ;   0.261 ;    ; uTco ; 1      ; FF_X33_Y12_N11   ; reset_sync:core_reset|sync_ff[1]       ;
+;   2.768 ;   0.000 ; FF ; CELL ; 130    ; FF_X33_Y12_N11   ; core_reset|sync_ff[1]|q                ;
+;   3.838 ;   1.070 ; FF ; IC   ; 1      ; CLKCTRL_G8       ; core_reset|sync_ff[1]~clkctrl|inclk[0] ;
+;   3.838 ;   0.000 ; FF ; CELL ; 444    ; CLKCTRL_G8       ; core_reset|sync_ff[1]~clkctrl|outclk   ;
+;   4.758 ;   0.920 ; FF ; IC   ; 1      ; FF_X32_Y11_N31   ; fir|history[1][2]|clrn                 ;
+;   5.596 ;   0.838 ; FF ; CELL ; 1      ; FF_X32_Y11_N31   ; fir_pipeline:fir|history[1][2]         ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+
++---------------------------------------------------------------------------------------------+
+; Data Required Path                                                                          ;
++---------+----------+----+------+--------+------------------+--------------------------------+
+; Total   ; Incr     ; RF ; Type ; Fanout ; Location         ; Element                        ;
++---------+----------+----+------+--------+------------------+--------------------------------+
+; 0.000   ; 0.000    ;    ;      ;        ;                  ; latch edge time                ;
+; 2.586   ; 2.586    ;    ;      ;        ;                  ; clock path                     ;
+;   0.000 ;   0.000  ;    ;      ;        ;                  ; source latency                 ;
+;   0.000 ;   0.000  ;    ;      ; 1      ; PIN_E1           ; aclk                           ;
+;   0.000 ;   0.000  ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|i                   ;
+;   0.766 ;   0.766  ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|o                   ;
+;   0.988 ;   0.222  ; RR ; IC   ; 1      ; CLKCTRL_G2       ; aclk~inputclkctrl|inclk[0]     ;
+;   0.988 ;   0.000  ; RR ; CELL ; 1264   ; CLKCTRL_G2       ; aclk~inputclkctrl|outclk       ;
+;   1.928 ;   0.940  ; RR ; IC   ; 1      ; FF_X32_Y11_N31   ; fir|history[1][2]|clk          ;
+;   2.595 ;   0.667  ; RR ; CELL ; 1      ; FF_X32_Y11_N31   ; fir_pipeline:fir|history[1][2] ;
+;   2.586 ;   -0.009 ;    ;      ;        ;                  ; clock pessimism                ;
+; 2.586   ; 0.000    ;    ;      ;        ;                  ; clock uncertainty              ;
+; 2.798   ; 0.212    ;    ; uTh  ; 1      ; FF_X32_Y11_N31   ; fir_pipeline:fir|history[1][2] ;
++---------+----------+----+------+--------+------------------+--------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #4: Removal slack is 2.798 
+===============================================================================
++-------------------------------------------------------+
+; Path Summary                                          ;
++--------------------+----------------------------------+
+; Property           ; Value                            ;
++--------------------+----------------------------------+
+; From Node          ; reset_sync:core_reset|sync_ff[1] ;
+; To Node            ; fir_pipeline:fir|history[2][2]   ;
+; Launch Clock       ; core_clk                         ;
+; Latch Clock        ; core_clk                         ;
+; Data Arrival Time  ; 5.596                            ;
+; Data Required Time ; 2.798                            ;
+; Slack              ; 2.798                            ;
++--------------------+----------------------------------+
+
++-----------------------------------------------------------------------------------+
+; Statistics                                                                        ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+; Property               ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+; Removal Relationship   ; 0.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; 0.079 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 3.089 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+; Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;       ;       ;             ;            ;       ;       ;
+;   Clock                ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 3     ; 1.123       ; 44         ; 0.000 ; 0.910 ;
+;    Cell                ;       ; 3     ; 1.384       ; 55         ; 0.000 ; 0.766 ;
+;   Data                 ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 2     ; 1.990       ; 64         ; 0.920 ; 1.070 ;
+;    Cell                ;       ; 3     ; 0.838       ; 27         ; 0.000 ; 0.838 ;
+;    uTco                ;       ; 1     ; 0.261       ; 8          ; 0.261 ; 0.261 ;
+;  Required Path         ;       ;       ;             ;            ;       ;       ;
+;   Clock                ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 3     ; 1.162       ; 44         ; 0.000 ; 0.940 ;
+;    Cell                ;       ; 3     ; 1.433       ; 55         ; 0.000 ; 0.766 ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++----------------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                                  ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+; Total   ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                                ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+; 0.000   ; 0.000   ;    ;      ;        ;                  ; launch edge time                       ;
+; 2.507   ; 2.507   ;    ;      ;        ;                  ; clock path                             ;
+;   0.000 ;   0.000 ;    ;      ;        ;                  ; source latency                         ;
+;   0.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; aclk                                   ;
+;   0.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|i                           ;
+;   0.766 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|o                           ;
+;   0.979 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; aclk~inputclkctrl|inclk[0]             ;
+;   0.979 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2       ; aclk~inputclkctrl|outclk               ;
+;   1.889 ;   0.910 ; RR ; IC   ; 1      ; FF_X33_Y12_N11   ; core_reset|sync_ff[1]|clk              ;
+;   2.507 ;   0.618 ; RR ; CELL ; 1      ; FF_X33_Y12_N11   ; reset_sync:core_reset|sync_ff[1]       ;
+; 5.596   ; 3.089   ;    ;      ;        ;                  ; data path                              ;
+;   2.768 ;   0.261 ;    ; uTco ; 1      ; FF_X33_Y12_N11   ; reset_sync:core_reset|sync_ff[1]       ;
+;   2.768 ;   0.000 ; FF ; CELL ; 130    ; FF_X33_Y12_N11   ; core_reset|sync_ff[1]|q                ;
+;   3.838 ;   1.070 ; FF ; IC   ; 1      ; CLKCTRL_G8       ; core_reset|sync_ff[1]~clkctrl|inclk[0] ;
+;   3.838 ;   0.000 ; FF ; CELL ; 444    ; CLKCTRL_G8       ; core_reset|sync_ff[1]~clkctrl|outclk   ;
+;   4.758 ;   0.920 ; FF ; IC   ; 1      ; FF_X32_Y11_N19   ; fir|history[2][2]|clrn                 ;
+;   5.596 ;   0.838 ; FF ; CELL ; 1      ; FF_X32_Y11_N19   ; fir_pipeline:fir|history[2][2]         ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+
++---------------------------------------------------------------------------------------------+
+; Data Required Path                                                                          ;
++---------+----------+----+------+--------+------------------+--------------------------------+
+; Total   ; Incr     ; RF ; Type ; Fanout ; Location         ; Element                        ;
++---------+----------+----+------+--------+------------------+--------------------------------+
+; 0.000   ; 0.000    ;    ;      ;        ;                  ; latch edge time                ;
+; 2.586   ; 2.586    ;    ;      ;        ;                  ; clock path                     ;
+;   0.000 ;   0.000  ;    ;      ;        ;                  ; source latency                 ;
+;   0.000 ;   0.000  ;    ;      ; 1      ; PIN_E1           ; aclk                           ;
+;   0.000 ;   0.000  ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|i                   ;
+;   0.766 ;   0.766  ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|o                   ;
+;   0.988 ;   0.222  ; RR ; IC   ; 1      ; CLKCTRL_G2       ; aclk~inputclkctrl|inclk[0]     ;
+;   0.988 ;   0.000  ; RR ; CELL ; 1264   ; CLKCTRL_G2       ; aclk~inputclkctrl|outclk       ;
+;   1.928 ;   0.940  ; RR ; IC   ; 1      ; FF_X32_Y11_N19   ; fir|history[2][2]|clk          ;
+;   2.595 ;   0.667  ; RR ; CELL ; 1      ; FF_X32_Y11_N19   ; fir_pipeline:fir|history[2][2] ;
+;   2.586 ;   -0.009 ;    ;      ;        ;                  ; clock pessimism                ;
+; 2.586   ; 0.000    ;    ;      ;        ;                  ; clock uncertainty              ;
+; 2.798   ; 0.212    ;    ; uTh  ; 1      ; FF_X32_Y11_N19   ; fir_pipeline:fir|history[2][2] ;
++---------+----------+----+------+--------+------------------+--------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
+Path #5: Removal slack is 2.798 
+===============================================================================
++-------------------------------------------------------+
+; Path Summary                                          ;
++--------------------+----------------------------------+
+; Property           ; Value                            ;
++--------------------+----------------------------------+
+; From Node          ; reset_sync:core_reset|sync_ff[1] ;
+; To Node            ; fir_pipeline:fir|history[3][2]   ;
+; Launch Clock       ; core_clk                         ;
+; Latch Clock        ; core_clk                         ;
+; Data Arrival Time  ; 5.596                            ;
+; Data Required Time ; 2.798                            ;
+; Slack              ; 2.798                            ;
++--------------------+----------------------------------+
+
++-----------------------------------------------------------------------------------+
+; Statistics                                                                        ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+; Property               ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+; Removal Relationship   ; 0.000 ;       ;             ;            ;       ;       ;
+; Clock Skew             ; 0.079 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 3.089 ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+; Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;       ;       ;             ;            ;       ;       ;
+;   Clock                ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 3     ; 1.123       ; 44         ; 0.000 ; 0.910 ;
+;    Cell                ;       ; 3     ; 1.384       ; 55         ; 0.000 ; 0.766 ;
+;   Data                 ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 2     ; 1.990       ; 64         ; 0.920 ; 1.070 ;
+;    Cell                ;       ; 3     ; 0.838       ; 27         ; 0.000 ; 0.838 ;
+;    uTco                ;       ; 1     ; 0.261       ; 8          ; 0.261 ; 0.261 ;
+;  Required Path         ;       ;       ;             ;            ;       ;       ;
+;   Clock                ;       ;       ;             ;            ;       ;       ;
+;    IC                  ;       ; 3     ; 1.162       ; 44         ; 0.000 ; 0.940 ;
+;    Cell                ;       ; 3     ; 1.433       ; 55         ; 0.000 ; 0.766 ;
++------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++----------------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                                  ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+; Total   ; Incr    ; RF ; Type ; Fanout ; Location         ; Element                                ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+; 0.000   ; 0.000   ;    ;      ;        ;                  ; launch edge time                       ;
+; 2.507   ; 2.507   ;    ;      ;        ;                  ; clock path                             ;
+;   0.000 ;   0.000 ;    ;      ;        ;                  ; source latency                         ;
+;   0.000 ;   0.000 ;    ;      ; 1      ; PIN_E1           ; aclk                                   ;
+;   0.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|i                           ;
+;   0.766 ;   0.766 ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|o                           ;
+;   0.979 ;   0.213 ; RR ; IC   ; 1      ; CLKCTRL_G2       ; aclk~inputclkctrl|inclk[0]             ;
+;   0.979 ;   0.000 ; RR ; CELL ; 1264   ; CLKCTRL_G2       ; aclk~inputclkctrl|outclk               ;
+;   1.889 ;   0.910 ; RR ; IC   ; 1      ; FF_X33_Y12_N11   ; core_reset|sync_ff[1]|clk              ;
+;   2.507 ;   0.618 ; RR ; CELL ; 1      ; FF_X33_Y12_N11   ; reset_sync:core_reset|sync_ff[1]       ;
+; 5.596   ; 3.089   ;    ;      ;        ;                  ; data path                              ;
+;   2.768 ;   0.261 ;    ; uTco ; 1      ; FF_X33_Y12_N11   ; reset_sync:core_reset|sync_ff[1]       ;
+;   2.768 ;   0.000 ; FF ; CELL ; 130    ; FF_X33_Y12_N11   ; core_reset|sync_ff[1]|q                ;
+;   3.838 ;   1.070 ; FF ; IC   ; 1      ; CLKCTRL_G8       ; core_reset|sync_ff[1]~clkctrl|inclk[0] ;
+;   3.838 ;   0.000 ; FF ; CELL ; 444    ; CLKCTRL_G8       ; core_reset|sync_ff[1]~clkctrl|outclk   ;
+;   4.758 ;   0.920 ; FF ; IC   ; 1      ; FF_X32_Y11_N15   ; fir|history[3][2]|clrn                 ;
+;   5.596 ;   0.838 ; FF ; CELL ; 1      ; FF_X32_Y11_N15   ; fir_pipeline:fir|history[3][2]         ;
++---------+---------+----+------+--------+------------------+----------------------------------------+
+
++---------------------------------------------------------------------------------------------+
+; Data Required Path                                                                          ;
++---------+----------+----+------+--------+------------------+--------------------------------+
+; Total   ; Incr     ; RF ; Type ; Fanout ; Location         ; Element                        ;
++---------+----------+----+------+--------+------------------+--------------------------------+
+; 0.000   ; 0.000    ;    ;      ;        ;                  ; latch edge time                ;
+; 2.586   ; 2.586    ;    ;      ;        ;                  ; clock path                     ;
+;   0.000 ;   0.000  ;    ;      ;        ;                  ; source latency                 ;
+;   0.000 ;   0.000  ;    ;      ; 1      ; PIN_E1           ; aclk                           ;
+;   0.000 ;   0.000  ; RR ; IC   ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|i                   ;
+;   0.766 ;   0.766  ; RR ; CELL ; 1      ; IOIBUF_X0_Y11_N8 ; aclk~input|o                   ;
+;   0.988 ;   0.222  ; RR ; IC   ; 1      ; CLKCTRL_G2       ; aclk~inputclkctrl|inclk[0]     ;
+;   0.988 ;   0.000  ; RR ; CELL ; 1264   ; CLKCTRL_G2       ; aclk~inputclkctrl|outclk       ;
+;   1.928 ;   0.940  ; RR ; IC   ; 1      ; FF_X32_Y11_N15   ; fir|history[3][2]|clk          ;
+;   2.595 ;   0.667  ; RR ; CELL ; 1      ; FF_X32_Y11_N15   ; fir_pipeline:fir|history[3][2] ;
+;   2.586 ;   -0.009 ;    ;      ;        ;                  ; clock pessimism                ;
+; 2.586   ; 0.000    ;    ;      ;        ;                  ; clock uncertainty              ;
+; 2.798   ; 0.212    ;    ; uTh  ; 1      ; FF_X32_Y11_N15   ; fir_pipeline:fir|history[3][2] ;
++---------+----------+----+------+--------+------------------+--------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+

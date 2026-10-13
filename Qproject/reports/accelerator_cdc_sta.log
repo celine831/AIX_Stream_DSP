@@ -1,0 +1,58 @@
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
+    Info: Copyright (C) 1991-2013 Altera Corporation. All rights reserved.
+    Info: Your use of Altera Corporation's design tools, logic functions 
+    Info: and other software and tools, and its AMPP partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Altera Program License 
+    Info: Subscription Agreement, Altera MegaCore Function License 
+    Info: Agreement, or other applicable license agreement, including, 
+    Info: without limitation, that your use is for the sole purpose of 
+    Info: programming logic devices manufactured by Altera and sold by 
+    Info: Altera or its authorized distributors.  Please refer to the 
+    Info: applicable agreement for further details.
+    Info: Processing started: Tue Oct 13 13:42:58 2026
+Info: Command: quartus_sta -t report_sta.tcl accelerator_cdc
+Info: Quartus(args): accelerator_cdc
+Info (11104): Parallel Compilation has detected 16 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 12 of the 12 physical processors detected instead.
+Info (21077): Core supply voltage is 1.2V
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Info (332104): Reading SDC File: 'accelerator_cdc.sdc'
+Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
+Info (332115): Report Timing: Found 10 setup paths (0 violated).  Worst case slack is 1.330
+    Info (332115): -setup
+    Info (332115): -npaths 10
+    Info (332115): -detail full_path
+    Info (332115): -file {reports/accelerator_cdc_setup.txt}
+Info (332115): Report Timing: Found 10 hold paths (0 violated).  Worst case slack is 0.452
+    Info (332115): -hold
+    Info (332115): -npaths 10
+    Info (332115): -detail full_path
+    Info (332115): -file {reports/accelerator_cdc_hold.txt}
+Info (332115): Report Timing: Found 5 recovery paths (0 violated).  Worst case slack is 9.491
+    Info (332115): -recovery
+    Info (332115): -npaths 5
+    Info (332115): -detail full_path
+    Info (332115): -file {reports/accelerator_cdc_recovery.txt}
+Info (332115): Report Timing: Found 5 removal paths (0 violated).  Worst case slack is 1.149
+    Info (332115): -removal
+    Info (332115): -npaths 5
+    Info (332115): -detail full_path
+    Info (332115): -file {reports/accelerator_cdc_removal.txt}
+Info (332101): Design is fully constrained for setup requirements
+Info (332101): Design is fully constrained for hold requirements
+Info (332181): Report Max Skew: Found 20 paths (0 violated).  Worst case slack is 9.598
+    Info (332181):  -detail full_path
+    Info (332181):  -npaths 10
+    Info (332181):  -file "reports/accelerator_cdc_gray_skew.txt"
+Info (23030): Evaluation of Tcl script report_sta.tcl was successful
+Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 4608 megabytes
+    Info: Processing ended: Tue Oct 13 13:43:00 2026
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:01

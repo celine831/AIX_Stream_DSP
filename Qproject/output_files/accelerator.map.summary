@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Tue Oct 13 13:41:33 2026
+Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version
+Revision Name : accelerator
+Top-level Entity Name : accelerator
+Family : Cyclone IV E
+Total logic elements : 1,956
+    Total combinational functions : 889
+    Dedicated logic registers : 1,496
+Total registers : 1496
+Total pins : 65
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 16
+Total PLLs : 0

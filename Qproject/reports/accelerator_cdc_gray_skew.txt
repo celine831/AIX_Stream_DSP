@@ -1,0 +1,1849 @@
+----------------
+; Command Info ;
+----------------
+Report Max Skew: Found 20 paths (0 violated). Worst case slack is 9.598
+
+Tcl Command:
+    report_max_skew -detail full_path -npaths 10 -file "reports/accelerator_cdc_gray_skew.txt"
+
+Options:
+     -detail full_path
+     -npaths 10
+     -file "reports/accelerator_cdc_gray_skew.txt"
+    
+Delay Model:
+    Slow 1200mV 85C Model
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Summary of Paths                                                                                                                                                                                                                                          ;
++----------------------------------+-------+---------------+-------------+----------------------------------------------+-------------------------------------------------+--------------+-------------+----------------------------------------------------+
+; Name                             ; Slack ; Required Skew ; Actual Skew ; From Node                                    ; To Node                                         ; Launch Clock ; Latch Clock ; Options                                            ;
++----------------------------------+-------+---------------+-------------+----------------------------------------------+-------------------------------------------------+--------------+-------------+----------------------------------------------------+
+; set_max_skew                     ; 9.598 ; 10.000        ; 0.402       ; [get_registers {*cdc*input_fifo*wr_gray[*]}] ; [get_registers {*cdc*input_fifo*wr_gray_m1[*]}] ;              ;             ; -exclude { from_clock to_clock clock_uncertainty } ;
+;  - Skew for the Latest Arrival   ;       ;               ;             ;                                              ;                                                 ;              ;             ;                                                    ;
+;   --                             ; 9.598 ; 10.000        ; 0.402       ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3]    ; source_clk   ; core_clk    ;                                                    ;
+;   --                             ; 9.599 ; 10.000        ; 0.401       ; axis_async_fifo:cdc.input_fifo|wr_gray[4]    ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[4]    ; source_clk   ; core_clk    ;                                                    ;
+;   --                             ; 9.603 ; 10.000        ; 0.397       ; axis_async_fifo:cdc.input_fifo|wr_gray[0]    ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0]    ; source_clk   ; core_clk    ;                                                    ;
+;   --                             ; 9.608 ; 10.000        ; 0.392       ; axis_async_fifo:cdc.input_fifo|wr_gray[2]    ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[2]    ; source_clk   ; core_clk    ;                                                    ;
+;   --                             ; 9.609 ; 10.000        ; 0.391       ; axis_async_fifo:cdc.input_fifo|wr_gray[1]    ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[1]    ; source_clk   ; core_clk    ;                                                    ;
+;  - Skew for the Earliest Arrival ;       ;               ;             ;                                              ;                                                 ;              ;             ;                                                    ;
+;   --                             ; 9.598 ; 10.000        ; 0.402       ; axis_async_fifo:cdc.input_fifo|wr_gray[0]    ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0]    ; source_clk   ; core_clk    ;                                                    ;
+;   --                             ; 9.600 ; 10.000        ; 0.400       ; axis_async_fifo:cdc.input_fifo|wr_gray[4]    ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[4]    ; source_clk   ; core_clk    ;                                                    ;
+;   --                             ; 9.600 ; 10.000        ; 0.400       ; axis_async_fifo:cdc.input_fifo|wr_gray[2]    ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[2]    ; source_clk   ; core_clk    ;                                                    ;
+;   --                             ; 9.600 ; 10.000        ; 0.400       ; axis_async_fifo:cdc.input_fifo|wr_gray[1]    ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[1]    ; source_clk   ; core_clk    ;                                                    ;
+;   --                             ; 9.601 ; 10.000        ; 0.399       ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3]    ; source_clk   ; core_clk    ;                                                    ;
+; set_max_skew                     ; 9.600 ; 10.000        ; 0.400       ; [get_registers {*cdc*input_fifo*rd_gray[*]}] ; [get_registers {*cdc*input_fifo*rd_gray_s1[*]}] ;              ;             ; -exclude { from_clock to_clock clock_uncertainty } ;
+;  - Skew for the Latest Arrival   ;       ;               ;             ;                                              ;                                                 ;              ;             ;                                                    ;
+;   --                             ; 9.600 ; 10.000        ; 0.400       ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3]    ; core_clk     ; source_clk  ;                                                    ;
+;   --                             ; 9.600 ; 10.000        ; 0.400       ; axis_async_fifo:cdc.input_fifo|rd_gray[1]    ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[1]    ; core_clk     ; source_clk  ;                                                    ;
+;   --                             ; 9.602 ; 10.000        ; 0.398       ; axis_async_fifo:cdc.input_fifo|rd_gray[0]    ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0]    ; core_clk     ; source_clk  ;                                                    ;
+;   --                             ; 9.604 ; 10.000        ; 0.396       ; axis_async_fifo:cdc.input_fifo|rd_gray[4]    ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[4]    ; core_clk     ; source_clk  ;                                                    ;
+;   --                             ; 9.608 ; 10.000        ; 0.392       ; axis_async_fifo:cdc.input_fifo|rd_gray[2]    ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[2]    ; core_clk     ; source_clk  ;                                                    ;
+;  - Skew for the Earliest Arrival ;       ;               ;             ;                                              ;                                                 ;              ;             ;                                                    ;
+;   --                             ; 9.600 ; 10.000        ; 0.400       ; axis_async_fifo:cdc.input_fifo|rd_gray[0]    ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0]    ; core_clk     ; source_clk  ;                                                    ;
+;   --                             ; 9.601 ; 10.000        ; 0.399       ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3]    ; core_clk     ; source_clk  ;                                                    ;
+;   --                             ; 9.601 ; 10.000        ; 0.399       ; axis_async_fifo:cdc.input_fifo|rd_gray[1]    ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[1]    ; core_clk     ; source_clk  ;                                                    ;
+;   --                             ; 9.603 ; 10.000        ; 0.397       ; axis_async_fifo:cdc.input_fifo|rd_gray[2]    ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[2]    ; core_clk     ; source_clk  ;                                                    ;
+;   --                             ; 9.606 ; 10.000        ; 0.394       ; axis_async_fifo:cdc.input_fifo|rd_gray[4]    ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[4]    ; core_clk     ; source_clk  ;                                                    ;
++----------------------------------+-------+---------------+-------------+----------------------------------------------+-------------------------------------------------+--------------+-------------+----------------------------------------------------+
+
+Path #1: Slack is 9.598  (set_max_skew -from [get_registers {*cdc*input_fifo*wr_gray[*]}] -to [get_registers {*cdc*input_fifo*wr_gray_m1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.273                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.252                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[0]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.032                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.820                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.402                                        ;
+; Slack                      ; 9.598                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.273 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.425       ; 33         ; 0.000 ; 0.425 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.032 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.325       ; 31         ; 0.000 ; 0.325 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                           ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X3_Y7_N11     ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X3_Y7_N11     ; cdc.input_fifo|wr_gray[3]|q                  ;
+;  0.686        ; 0.425  ; FF ; IC   ; 1      ; LCCOMB_X3_Y7_N26 ; cdc.input_fifo|wr_gray_m1[3]~feeder|dataa    ;
+;  1.158        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X3_Y7_N26 ; cdc.input_fifo|wr_gray_m1[3]~feeder|combout  ;
+;  1.158        ; 0.000  ; FF ; IC   ; 1      ; FF_X3_Y7_N27     ; cdc.input_fifo|wr_gray_m1[3]|d               ;
+;  1.273        ; 0.115  ; FF ; CELL ; 1      ; FF_X3_Y7_N27     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  1.252        ; -0.021 ;    ; uTsu ; 1      ; FF_X3_Y7_N27     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X2_Y7_N31     ; axis_async_fifo:cdc.input_fifo|wr_gray[0]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X2_Y7_N31     ; cdc.input_fifo|wr_gray[0]|q                  ;
+;  0.586        ; 0.325  ; RR ; IC   ; 1      ; LCCOMB_X2_Y7_N24 ; cdc.input_fifo|wr_gray_m1[0]~feeder|dataa    ;
+;  0.953        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X2_Y7_N24 ; cdc.input_fifo|wr_gray_m1[0]~feeder|combout  ;
+;  0.953        ; 0.000  ; RR ; IC   ; 1      ; FF_X2_Y7_N25     ; cdc.input_fifo|wr_gray_m1[0]|d               ;
+;  1.032        ; 0.079  ; RR ; CELL ; 1      ; FF_X2_Y7_N25     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.820        ; -0.212 ;    ; uTh  ; 1      ; FF_X2_Y7_N25     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #2: Slack is 9.599  (set_max_skew -from [get_registers {*cdc*input_fifo*wr_gray[*]}] -to [get_registers {*cdc*input_fifo*wr_gray_m1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[4]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[4] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.272                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.251                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[0]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.032                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.820                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.401                                        ;
+; Slack                      ; 9.599                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.272 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.424       ; 33         ; 0.000 ; 0.424 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.032 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.325       ; 31         ; 0.000 ; 0.325 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                           ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X2_Y7_N13     ; axis_async_fifo:cdc.input_fifo|wr_gray[4]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X2_Y7_N13     ; cdc.input_fifo|wr_gray[4]|q                  ;
+;  0.685        ; 0.424  ; FF ; IC   ; 1      ; LCCOMB_X2_Y7_N22 ; cdc.input_fifo|wr_gray_m1[4]~feeder|dataa    ;
+;  1.157        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X2_Y7_N22 ; cdc.input_fifo|wr_gray_m1[4]~feeder|combout  ;
+;  1.157        ; 0.000  ; FF ; IC   ; 1      ; FF_X2_Y7_N23     ; cdc.input_fifo|wr_gray_m1[4]|d               ;
+;  1.272        ; 0.115  ; FF ; CELL ; 1      ; FF_X2_Y7_N23     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[4] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  1.251        ; -0.021 ;    ; uTsu ; 1      ; FF_X2_Y7_N23     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[4] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X2_Y7_N31     ; axis_async_fifo:cdc.input_fifo|wr_gray[0]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X2_Y7_N31     ; cdc.input_fifo|wr_gray[0]|q                  ;
+;  0.586        ; 0.325  ; RR ; IC   ; 1      ; LCCOMB_X2_Y7_N24 ; cdc.input_fifo|wr_gray_m1[0]~feeder|dataa    ;
+;  0.953        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X2_Y7_N24 ; cdc.input_fifo|wr_gray_m1[0]~feeder|combout  ;
+;  0.953        ; 0.000  ; RR ; IC   ; 1      ; FF_X2_Y7_N25     ; cdc.input_fifo|wr_gray_m1[0]|d               ;
+;  1.032        ; 0.079  ; RR ; CELL ; 1      ; FF_X2_Y7_N25     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.820        ; -0.212 ;    ; uTh  ; 1      ; FF_X2_Y7_N25     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #3: Slack is 9.603  (set_max_skew -from [get_registers {*cdc*input_fifo*wr_gray[*]}] -to [get_registers {*cdc*input_fifo*wr_gray_m1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[0]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.270                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.249                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.034                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.822                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.397                                        ;
+; Slack                      ; 9.603                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.270 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.422       ; 33         ; 0.000 ; 0.422 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.034 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.327       ; 31         ; 0.000 ; 0.327 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                           ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X2_Y7_N31     ; axis_async_fifo:cdc.input_fifo|wr_gray[0]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X2_Y7_N31     ; cdc.input_fifo|wr_gray[0]|q                  ;
+;  0.683        ; 0.422  ; FF ; IC   ; 1      ; LCCOMB_X2_Y7_N24 ; cdc.input_fifo|wr_gray_m1[0]~feeder|dataa    ;
+;  1.155        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X2_Y7_N24 ; cdc.input_fifo|wr_gray_m1[0]~feeder|combout  ;
+;  1.155        ; 0.000  ; FF ; IC   ; 1      ; FF_X2_Y7_N25     ; cdc.input_fifo|wr_gray_m1[0]|d               ;
+;  1.270        ; 0.115  ; FF ; CELL ; 1      ; FF_X2_Y7_N25     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  1.249        ; -0.021 ;    ; uTsu ; 1      ; FF_X2_Y7_N25     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X3_Y7_N11     ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X3_Y7_N11     ; cdc.input_fifo|wr_gray[3]|q                  ;
+;  0.588        ; 0.327  ; RR ; IC   ; 1      ; LCCOMB_X3_Y7_N26 ; cdc.input_fifo|wr_gray_m1[3]~feeder|dataa    ;
+;  0.955        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X3_Y7_N26 ; cdc.input_fifo|wr_gray_m1[3]~feeder|combout  ;
+;  0.955        ; 0.000  ; RR ; IC   ; 1      ; FF_X3_Y7_N27     ; cdc.input_fifo|wr_gray_m1[3]|d               ;
+;  1.034        ; 0.079  ; RR ; CELL ; 1      ; FF_X3_Y7_N27     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.822        ; -0.212 ;    ; uTh  ; 1      ; FF_X3_Y7_N27     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #4: Slack is 9.608  (set_max_skew -from [get_registers {*cdc*input_fifo*wr_gray[*]}] -to [get_registers {*cdc*input_fifo*wr_gray_m1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[2]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[2] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.263                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.242                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[0]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.032                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.820                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.392                                        ;
+; Slack                      ; 9.608                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.263 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.414       ; 32         ; 0.000 ; 0.414 ;
+;     Cell                ;       ; 3     ; 0.588       ; 46         ; 0.000 ; 0.473 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.032 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.325       ; 31         ; 0.000 ; 0.325 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                           ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X3_Y7_N21     ; axis_async_fifo:cdc.input_fifo|wr_gray[2]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X3_Y7_N21     ; cdc.input_fifo|wr_gray[2]|q                  ;
+;  0.675        ; 0.414  ; FF ; IC   ; 1      ; LCCOMB_X3_Y7_N14 ; cdc.input_fifo|wr_gray_m1[2]~feeder|datab    ;
+;  1.148        ; 0.473  ; FF ; CELL ; 1      ; LCCOMB_X3_Y7_N14 ; cdc.input_fifo|wr_gray_m1[2]~feeder|combout  ;
+;  1.148        ; 0.000  ; FF ; IC   ; 1      ; FF_X3_Y7_N15     ; cdc.input_fifo|wr_gray_m1[2]|d               ;
+;  1.263        ; 0.115  ; FF ; CELL ; 1      ; FF_X3_Y7_N15     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[2] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  1.242        ; -0.021 ;    ; uTsu ; 1      ; FF_X3_Y7_N15     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[2] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X2_Y7_N31     ; axis_async_fifo:cdc.input_fifo|wr_gray[0]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X2_Y7_N31     ; cdc.input_fifo|wr_gray[0]|q                  ;
+;  0.586        ; 0.325  ; RR ; IC   ; 1      ; LCCOMB_X2_Y7_N24 ; cdc.input_fifo|wr_gray_m1[0]~feeder|dataa    ;
+;  0.953        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X2_Y7_N24 ; cdc.input_fifo|wr_gray_m1[0]~feeder|combout  ;
+;  0.953        ; 0.000  ; RR ; IC   ; 1      ; FF_X2_Y7_N25     ; cdc.input_fifo|wr_gray_m1[0]|d               ;
+;  1.032        ; 0.079  ; RR ; CELL ; 1      ; FF_X2_Y7_N25     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.820        ; -0.212 ;    ; uTh  ; 1      ; FF_X2_Y7_N25     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #5: Slack is 9.609  (set_max_skew -from [get_registers {*cdc*input_fifo*wr_gray[*]}] -to [get_registers {*cdc*input_fifo*wr_gray_m1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[1]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[1] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.262                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.241                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[0]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.032                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.820                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.391                                        ;
+; Slack                      ; 9.609                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.262 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.413       ; 32         ; 0.000 ; 0.413 ;
+;     Cell                ;       ; 3     ; 0.588       ; 46         ; 0.000 ; 0.473 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.032 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.325       ; 31         ; 0.000 ; 0.325 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                           ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N25     ; axis_async_fifo:cdc.input_fifo|wr_gray[1]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X4_Y7_N25     ; cdc.input_fifo|wr_gray[1]|q                  ;
+;  0.674        ; 0.413  ; FF ; IC   ; 1      ; LCCOMB_X4_Y7_N16 ; cdc.input_fifo|wr_gray_m1[1]~feeder|datab    ;
+;  1.147        ; 0.473  ; FF ; CELL ; 1      ; LCCOMB_X4_Y7_N16 ; cdc.input_fifo|wr_gray_m1[1]~feeder|combout  ;
+;  1.147        ; 0.000  ; FF ; IC   ; 1      ; FF_X4_Y7_N17     ; cdc.input_fifo|wr_gray_m1[1]|d               ;
+;  1.262        ; 0.115  ; FF ; CELL ; 1      ; FF_X4_Y7_N17     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[1] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  1.241        ; -0.021 ;    ; uTsu ; 1      ; FF_X4_Y7_N17     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[1] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X2_Y7_N31     ; axis_async_fifo:cdc.input_fifo|wr_gray[0]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X2_Y7_N31     ; cdc.input_fifo|wr_gray[0]|q                  ;
+;  0.586        ; 0.325  ; RR ; IC   ; 1      ; LCCOMB_X2_Y7_N24 ; cdc.input_fifo|wr_gray_m1[0]~feeder|dataa    ;
+;  0.953        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X2_Y7_N24 ; cdc.input_fifo|wr_gray_m1[0]~feeder|combout  ;
+;  0.953        ; 0.000  ; RR ; IC   ; 1      ; FF_X2_Y7_N25     ; cdc.input_fifo|wr_gray_m1[0]|d               ;
+;  1.032        ; 0.079  ; RR ; CELL ; 1      ; FF_X2_Y7_N25     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.820        ; -0.212 ;    ; uTh  ; 1      ; FF_X2_Y7_N25     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #6: Slack is 9.598  (set_max_skew -from [get_registers {*cdc*input_fifo*wr_gray[*]}] -to [get_registers {*cdc*input_fifo*wr_gray_m1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.273                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.252                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[0]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.032                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.820                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.402                                        ;
+; Slack                      ; 9.598                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.273 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.425       ; 33         ; 0.000 ; 0.425 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.032 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.325       ; 31         ; 0.000 ; 0.325 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                           ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X3_Y7_N11     ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X3_Y7_N11     ; cdc.input_fifo|wr_gray[3]|q                  ;
+;  0.686        ; 0.425  ; FF ; IC   ; 1      ; LCCOMB_X3_Y7_N26 ; cdc.input_fifo|wr_gray_m1[3]~feeder|dataa    ;
+;  1.158        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X3_Y7_N26 ; cdc.input_fifo|wr_gray_m1[3]~feeder|combout  ;
+;  1.158        ; 0.000  ; FF ; IC   ; 1      ; FF_X3_Y7_N27     ; cdc.input_fifo|wr_gray_m1[3]|d               ;
+;  1.273        ; 0.115  ; FF ; CELL ; 1      ; FF_X3_Y7_N27     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  1.252        ; -0.021 ;    ; uTsu ; 1      ; FF_X3_Y7_N27     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X2_Y7_N31     ; axis_async_fifo:cdc.input_fifo|wr_gray[0]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X2_Y7_N31     ; cdc.input_fifo|wr_gray[0]|q                  ;
+;  0.586        ; 0.325  ; RR ; IC   ; 1      ; LCCOMB_X2_Y7_N24 ; cdc.input_fifo|wr_gray_m1[0]~feeder|dataa    ;
+;  0.953        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X2_Y7_N24 ; cdc.input_fifo|wr_gray_m1[0]~feeder|combout  ;
+;  0.953        ; 0.000  ; RR ; IC   ; 1      ; FF_X2_Y7_N25     ; cdc.input_fifo|wr_gray_m1[0]|d               ;
+;  1.032        ; 0.079  ; RR ; CELL ; 1      ; FF_X2_Y7_N25     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.820        ; -0.212 ;    ; uTh  ; 1      ; FF_X2_Y7_N25     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[0] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #7: Slack is 9.600  (set_max_skew -from [get_registers {*cdc*input_fifo*wr_gray[*]}] -to [get_registers {*cdc*input_fifo*wr_gray_m1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.273                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.252                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[4]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[4] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.034                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.822                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.400                                        ;
+; Slack                      ; 9.600                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.273 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.425       ; 33         ; 0.000 ; 0.425 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.034 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.327       ; 31         ; 0.000 ; 0.327 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                           ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X3_Y7_N11     ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X3_Y7_N11     ; cdc.input_fifo|wr_gray[3]|q                  ;
+;  0.686        ; 0.425  ; FF ; IC   ; 1      ; LCCOMB_X3_Y7_N26 ; cdc.input_fifo|wr_gray_m1[3]~feeder|dataa    ;
+;  1.158        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X3_Y7_N26 ; cdc.input_fifo|wr_gray_m1[3]~feeder|combout  ;
+;  1.158        ; 0.000  ; FF ; IC   ; 1      ; FF_X3_Y7_N27     ; cdc.input_fifo|wr_gray_m1[3]|d               ;
+;  1.273        ; 0.115  ; FF ; CELL ; 1      ; FF_X3_Y7_N27     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  1.252        ; -0.021 ;    ; uTsu ; 1      ; FF_X3_Y7_N27     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X2_Y7_N13     ; axis_async_fifo:cdc.input_fifo|wr_gray[4]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X2_Y7_N13     ; cdc.input_fifo|wr_gray[4]|q                  ;
+;  0.588        ; 0.327  ; RR ; IC   ; 1      ; LCCOMB_X2_Y7_N22 ; cdc.input_fifo|wr_gray_m1[4]~feeder|dataa    ;
+;  0.955        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X2_Y7_N22 ; cdc.input_fifo|wr_gray_m1[4]~feeder|combout  ;
+;  0.955        ; 0.000  ; RR ; IC   ; 1      ; FF_X2_Y7_N23     ; cdc.input_fifo|wr_gray_m1[4]|d               ;
+;  1.034        ; 0.079  ; RR ; CELL ; 1      ; FF_X2_Y7_N23     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[4] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.822        ; -0.212 ;    ; uTh  ; 1      ; FF_X2_Y7_N23     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[4] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #8: Slack is 9.600  (set_max_skew -from [get_registers {*cdc*input_fifo*wr_gray[*]}] -to [get_registers {*cdc*input_fifo*wr_gray_m1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.273                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.252                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[2]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[2] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.034                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.822                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.400                                        ;
+; Slack                      ; 9.600                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.273 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.425       ; 33         ; 0.000 ; 0.425 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.034 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.323       ; 31         ; 0.000 ; 0.323 ;
+;     Cell                ;       ; 3     ; 0.450       ; 43         ; 0.000 ; 0.371 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                           ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X3_Y7_N11     ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X3_Y7_N11     ; cdc.input_fifo|wr_gray[3]|q                  ;
+;  0.686        ; 0.425  ; FF ; IC   ; 1      ; LCCOMB_X3_Y7_N26 ; cdc.input_fifo|wr_gray_m1[3]~feeder|dataa    ;
+;  1.158        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X3_Y7_N26 ; cdc.input_fifo|wr_gray_m1[3]~feeder|combout  ;
+;  1.158        ; 0.000  ; FF ; IC   ; 1      ; FF_X3_Y7_N27     ; cdc.input_fifo|wr_gray_m1[3]|d               ;
+;  1.273        ; 0.115  ; FF ; CELL ; 1      ; FF_X3_Y7_N27     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  1.252        ; -0.021 ;    ; uTsu ; 1      ; FF_X3_Y7_N27     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X3_Y7_N21     ; axis_async_fifo:cdc.input_fifo|wr_gray[2]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X3_Y7_N21     ; cdc.input_fifo|wr_gray[2]|q                  ;
+;  0.584        ; 0.323  ; RR ; IC   ; 1      ; LCCOMB_X3_Y7_N14 ; cdc.input_fifo|wr_gray_m1[2]~feeder|datab    ;
+;  0.955        ; 0.371  ; RR ; CELL ; 1      ; LCCOMB_X3_Y7_N14 ; cdc.input_fifo|wr_gray_m1[2]~feeder|combout  ;
+;  0.955        ; 0.000  ; RR ; IC   ; 1      ; FF_X3_Y7_N15     ; cdc.input_fifo|wr_gray_m1[2]|d               ;
+;  1.034        ; 0.079  ; RR ; CELL ; 1      ; FF_X3_Y7_N15     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[2] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.822        ; -0.212 ;    ; uTh  ; 1      ; FF_X3_Y7_N15     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[2] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #9: Slack is 9.600  (set_max_skew -from [get_registers {*cdc*input_fifo*wr_gray[*]}] -to [get_registers {*cdc*input_fifo*wr_gray_m1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.273                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.252                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[1]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[1] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.034                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.822                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.400                                        ;
+; Slack                      ; 9.600                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.273 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.425       ; 33         ; 0.000 ; 0.425 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.034 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.323       ; 31         ; 0.000 ; 0.323 ;
+;     Cell                ;       ; 3     ; 0.450       ; 43         ; 0.000 ; 0.371 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                           ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X3_Y7_N11     ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X3_Y7_N11     ; cdc.input_fifo|wr_gray[3]|q                  ;
+;  0.686        ; 0.425  ; FF ; IC   ; 1      ; LCCOMB_X3_Y7_N26 ; cdc.input_fifo|wr_gray_m1[3]~feeder|dataa    ;
+;  1.158        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X3_Y7_N26 ; cdc.input_fifo|wr_gray_m1[3]~feeder|combout  ;
+;  1.158        ; 0.000  ; FF ; IC   ; 1      ; FF_X3_Y7_N27     ; cdc.input_fifo|wr_gray_m1[3]|d               ;
+;  1.273        ; 0.115  ; FF ; CELL ; 1      ; FF_X3_Y7_N27     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  1.252        ; -0.021 ;    ; uTsu ; 1      ; FF_X3_Y7_N27     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N25     ; axis_async_fifo:cdc.input_fifo|wr_gray[1]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X4_Y7_N25     ; cdc.input_fifo|wr_gray[1]|q                  ;
+;  0.584        ; 0.323  ; RR ; IC   ; 1      ; LCCOMB_X4_Y7_N16 ; cdc.input_fifo|wr_gray_m1[1]~feeder|datab    ;
+;  0.955        ; 0.371  ; RR ; CELL ; 1      ; LCCOMB_X4_Y7_N16 ; cdc.input_fifo|wr_gray_m1[1]~feeder|combout  ;
+;  0.955        ; 0.000  ; RR ; IC   ; 1      ; FF_X4_Y7_N17     ; cdc.input_fifo|wr_gray_m1[1]|d               ;
+;  1.034        ; 0.079  ; RR ; CELL ; 1      ; FF_X4_Y7_N17     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[1] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.822        ; -0.212 ;    ; uTh  ; 1      ; FF_X4_Y7_N17     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[1] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #10: Slack is 9.601  (set_max_skew -from [get_registers {*cdc*input_fifo*wr_gray[*]}] -to [get_registers {*cdc*input_fifo*wr_gray_m1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[4]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[4] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.272                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.251                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
+;  Launch Clock              ; source_clk                                   ;
+;  Latch Clock               ; core_clk                                     ;
+;  Data Arrival Time         ; 1.034                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.822                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.399                                        ;
+; Slack                      ; 9.601                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.272 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.424       ; 33         ; 0.000 ; 0.424 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.034 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.327       ; 31         ; 0.000 ; 0.327 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                           ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X2_Y7_N13     ; axis_async_fifo:cdc.input_fifo|wr_gray[4]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X2_Y7_N13     ; cdc.input_fifo|wr_gray[4]|q                  ;
+;  0.685        ; 0.424  ; FF ; IC   ; 1      ; LCCOMB_X2_Y7_N22 ; cdc.input_fifo|wr_gray_m1[4]~feeder|dataa    ;
+;  1.157        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X2_Y7_N22 ; cdc.input_fifo|wr_gray_m1[4]~feeder|combout  ;
+;  1.157        ; 0.000  ; FF ; IC   ; 1      ; FF_X2_Y7_N23     ; cdc.input_fifo|wr_gray_m1[4]|d               ;
+;  1.272        ; 0.115  ; FF ; CELL ; 1      ; FF_X2_Y7_N23     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[4] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  1.251        ; -0.021 ;    ; uTsu ; 1      ; FF_X2_Y7_N23     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[4] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X3_Y7_N11     ; axis_async_fifo:cdc.input_fifo|wr_gray[3]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X3_Y7_N11     ; cdc.input_fifo|wr_gray[3]|q                  ;
+;  0.588        ; 0.327  ; RR ; IC   ; 1      ; LCCOMB_X3_Y7_N26 ; cdc.input_fifo|wr_gray_m1[3]~feeder|dataa    ;
+;  0.955        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X3_Y7_N26 ; cdc.input_fifo|wr_gray_m1[3]~feeder|combout  ;
+;  0.955        ; 0.000  ; RR ; IC   ; 1      ; FF_X3_Y7_N27     ; cdc.input_fifo|wr_gray_m1[3]|d               ;
+;  1.034        ; 0.079  ; RR ; CELL ; 1      ; FF_X3_Y7_N27     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.822        ; -0.212 ;    ; uTh  ; 1      ; FF_X3_Y7_N27     ; axis_async_fifo:cdc.input_fifo|wr_gray_m1[3] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #11: Slack is 9.600  (set_max_skew -from [get_registers {*cdc*input_fifo*rd_gray[*]}] -to [get_registers {*cdc*input_fifo*rd_gray_s1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.271                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.250                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[0]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.032                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.820                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.400                                        ;
+; Slack                      ; 9.600                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.271 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.423       ; 33         ; 0.000 ; 0.423 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.032 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.325       ; 31         ; 0.000 ; 0.325 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++--------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                          ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location        ; Element                                      ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                 ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N13    ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X4_Y7_N13    ; cdc.input_fifo|rd_gray[3]|q                  ;
+;  0.684        ; 0.423  ; FF ; IC   ; 1      ; LCCOMB_X4_Y7_N8 ; cdc.input_fifo|rd_gray_s1[3]~feeder|dataa    ;
+;  1.156        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X4_Y7_N8 ; cdc.input_fifo|rd_gray_s1[3]~feeder|combout  ;
+;  1.156        ; 0.000  ; FF ; IC   ; 1      ; FF_X4_Y7_N9     ; cdc.input_fifo|rd_gray_s1[3]|d               ;
+;  1.271        ; 0.115  ; FF ; CELL ; 1      ; FF_X4_Y7_N9     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
+; Clock Arrival ;        ;    ;      ;        ;                 ;                                              ;
+;  1.250        ; -0.021 ;    ; uTsu ; 1      ; FF_X4_Y7_N9     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N27     ; axis_async_fifo:cdc.input_fifo|rd_gray[0]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X4_Y7_N27     ; cdc.input_fifo|rd_gray[0]|q                  ;
+;  0.586        ; 0.325  ; RR ; IC   ; 1      ; LCCOMB_X4_Y7_N28 ; cdc.input_fifo|rd_gray_s1[0]~feeder|dataa    ;
+;  0.953        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X4_Y7_N28 ; cdc.input_fifo|rd_gray_s1[0]~feeder|combout  ;
+;  0.953        ; 0.000  ; RR ; IC   ; 1      ; FF_X4_Y7_N29     ; cdc.input_fifo|rd_gray_s1[0]|d               ;
+;  1.032        ; 0.079  ; RR ; CELL ; 1      ; FF_X4_Y7_N29     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.820        ; -0.212 ;    ; uTh  ; 1      ; FF_X4_Y7_N29     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #12: Slack is 9.600  (set_max_skew -from [get_registers {*cdc*input_fifo*rd_gray[*]}] -to [get_registers {*cdc*input_fifo*rd_gray_s1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[1]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[1] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.271                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.250                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[0]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.032                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.820                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.400                                        ;
+; Slack                      ; 9.600                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.271 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.423       ; 33         ; 0.000 ; 0.423 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.032 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.325       ; 31         ; 0.000 ; 0.325 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                           ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N7      ; axis_async_fifo:cdc.input_fifo|rd_gray[1]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X4_Y7_N7      ; cdc.input_fifo|rd_gray[1]|q                  ;
+;  0.684        ; 0.423  ; FF ; IC   ; 1      ; LCCOMB_X4_Y7_N14 ; cdc.input_fifo|rd_gray_s1[1]~feeder|dataa    ;
+;  1.156        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X4_Y7_N14 ; cdc.input_fifo|rd_gray_s1[1]~feeder|combout  ;
+;  1.156        ; 0.000  ; FF ; IC   ; 1      ; FF_X4_Y7_N15     ; cdc.input_fifo|rd_gray_s1[1]|d               ;
+;  1.271        ; 0.115  ; FF ; CELL ; 1      ; FF_X4_Y7_N15     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[1] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  1.250        ; -0.021 ;    ; uTsu ; 1      ; FF_X4_Y7_N15     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[1] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N27     ; axis_async_fifo:cdc.input_fifo|rd_gray[0]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X4_Y7_N27     ; cdc.input_fifo|rd_gray[0]|q                  ;
+;  0.586        ; 0.325  ; RR ; IC   ; 1      ; LCCOMB_X4_Y7_N28 ; cdc.input_fifo|rd_gray_s1[0]~feeder|dataa    ;
+;  0.953        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X4_Y7_N28 ; cdc.input_fifo|rd_gray_s1[0]~feeder|combout  ;
+;  0.953        ; 0.000  ; RR ; IC   ; 1      ; FF_X4_Y7_N29     ; cdc.input_fifo|rd_gray_s1[0]|d               ;
+;  1.032        ; 0.079  ; RR ; CELL ; 1      ; FF_X4_Y7_N29     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.820        ; -0.212 ;    ; uTh  ; 1      ; FF_X4_Y7_N29     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #13: Slack is 9.602  (set_max_skew -from [get_registers {*cdc*input_fifo*rd_gray[*]}] -to [get_registers {*cdc*input_fifo*rd_gray_s1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[0]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.270                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.249                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.033                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.821                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.398                                        ;
+; Slack                      ; 9.602                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.270 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.422       ; 33         ; 0.000 ; 0.422 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.033 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.326       ; 31         ; 0.000 ; 0.326 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                           ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N27     ; axis_async_fifo:cdc.input_fifo|rd_gray[0]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X4_Y7_N27     ; cdc.input_fifo|rd_gray[0]|q                  ;
+;  0.683        ; 0.422  ; FF ; IC   ; 1      ; LCCOMB_X4_Y7_N28 ; cdc.input_fifo|rd_gray_s1[0]~feeder|dataa    ;
+;  1.155        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X4_Y7_N28 ; cdc.input_fifo|rd_gray_s1[0]~feeder|combout  ;
+;  1.155        ; 0.000  ; FF ; IC   ; 1      ; FF_X4_Y7_N29     ; cdc.input_fifo|rd_gray_s1[0]|d               ;
+;  1.270        ; 0.115  ; FF ; CELL ; 1      ; FF_X4_Y7_N29     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  1.249        ; -0.021 ;    ; uTsu ; 1      ; FF_X4_Y7_N29     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
++--------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                        ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location        ; Element                                      ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                 ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N13    ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X4_Y7_N13    ; cdc.input_fifo|rd_gray[3]|q                  ;
+;  0.587        ; 0.326  ; RR ; IC   ; 1      ; LCCOMB_X4_Y7_N8 ; cdc.input_fifo|rd_gray_s1[3]~feeder|dataa    ;
+;  0.954        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X4_Y7_N8 ; cdc.input_fifo|rd_gray_s1[3]~feeder|combout  ;
+;  0.954        ; 0.000  ; RR ; IC   ; 1      ; FF_X4_Y7_N9     ; cdc.input_fifo|rd_gray_s1[3]|d               ;
+;  1.033        ; 0.079  ; RR ; CELL ; 1      ; FF_X4_Y7_N9     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
+; Clock Arrival ;        ;    ;      ;        ;                 ;                                              ;
+;  0.821        ; -0.212 ;    ; uTh  ; 1      ; FF_X4_Y7_N9     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+
+
+Path #14: Slack is 9.604  (set_max_skew -from [get_registers {*cdc*input_fifo*rd_gray[*]}] -to [get_registers {*cdc*input_fifo*rd_gray_s1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[4]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[4] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.267                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.246                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[0]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.032                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.820                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.396                                        ;
+; Slack                      ; 9.604                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.267 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.418       ; 32         ; 0.000 ; 0.418 ;
+;     Cell                ;       ; 3     ; 0.588       ; 46         ; 0.000 ; 0.473 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.032 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.325       ; 31         ; 0.000 ; 0.325 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                           ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X3_Y7_N1      ; axis_async_fifo:cdc.input_fifo|rd_gray[4]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X3_Y7_N1      ; cdc.input_fifo|rd_gray[4]|q                  ;
+;  0.679        ; 0.418  ; FF ; IC   ; 1      ; LCCOMB_X3_Y7_N30 ; cdc.input_fifo|rd_gray_s1[4]~feeder|datab    ;
+;  1.152        ; 0.473  ; FF ; CELL ; 1      ; LCCOMB_X3_Y7_N30 ; cdc.input_fifo|rd_gray_s1[4]~feeder|combout  ;
+;  1.152        ; 0.000  ; FF ; IC   ; 1      ; FF_X3_Y7_N31     ; cdc.input_fifo|rd_gray_s1[4]|d               ;
+;  1.267        ; 0.115  ; FF ; CELL ; 1      ; FF_X3_Y7_N31     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[4] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  1.246        ; -0.021 ;    ; uTsu ; 1      ; FF_X3_Y7_N31     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[4] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N27     ; axis_async_fifo:cdc.input_fifo|rd_gray[0]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X4_Y7_N27     ; cdc.input_fifo|rd_gray[0]|q                  ;
+;  0.586        ; 0.325  ; RR ; IC   ; 1      ; LCCOMB_X4_Y7_N28 ; cdc.input_fifo|rd_gray_s1[0]~feeder|dataa    ;
+;  0.953        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X4_Y7_N28 ; cdc.input_fifo|rd_gray_s1[0]~feeder|combout  ;
+;  0.953        ; 0.000  ; RR ; IC   ; 1      ; FF_X4_Y7_N29     ; cdc.input_fifo|rd_gray_s1[0]|d               ;
+;  1.032        ; 0.079  ; RR ; CELL ; 1      ; FF_X4_Y7_N29     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.820        ; -0.212 ;    ; uTh  ; 1      ; FF_X4_Y7_N29     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #15: Slack is 9.608  (set_max_skew -from [get_registers {*cdc*input_fifo*rd_gray[*]}] -to [get_registers {*cdc*input_fifo*rd_gray_s1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[2]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[2] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.263                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.242                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[0]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.032                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.820                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.392                                        ;
+; Slack                      ; 9.608                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.263 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.414       ; 32         ; 0.000 ; 0.414 ;
+;     Cell                ;       ; 3     ; 0.588       ; 46         ; 0.000 ; 0.473 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.032 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.325       ; 31         ; 0.000 ; 0.325 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++--------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                          ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location        ; Element                                      ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                 ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X3_Y7_N17    ; axis_async_fifo:cdc.input_fifo|rd_gray[2]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X3_Y7_N17    ; cdc.input_fifo|rd_gray[2]|q                  ;
+;  0.675        ; 0.414  ; FF ; IC   ; 1      ; LCCOMB_X3_Y7_N6 ; cdc.input_fifo|rd_gray_s1[2]~feeder|datab    ;
+;  1.148        ; 0.473  ; FF ; CELL ; 1      ; LCCOMB_X3_Y7_N6 ; cdc.input_fifo|rd_gray_s1[2]~feeder|combout  ;
+;  1.148        ; 0.000  ; FF ; IC   ; 1      ; FF_X3_Y7_N7     ; cdc.input_fifo|rd_gray_s1[2]|d               ;
+;  1.263        ; 0.115  ; FF ; CELL ; 1      ; FF_X3_Y7_N7     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[2] ;
+; Clock Arrival ;        ;    ;      ;        ;                 ;                                              ;
+;  1.242        ; -0.021 ;    ; uTsu ; 1      ; FF_X3_Y7_N7     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[2] ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N27     ; axis_async_fifo:cdc.input_fifo|rd_gray[0]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X4_Y7_N27     ; cdc.input_fifo|rd_gray[0]|q                  ;
+;  0.586        ; 0.325  ; RR ; IC   ; 1      ; LCCOMB_X4_Y7_N28 ; cdc.input_fifo|rd_gray_s1[0]~feeder|dataa    ;
+;  0.953        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X4_Y7_N28 ; cdc.input_fifo|rd_gray_s1[0]~feeder|combout  ;
+;  0.953        ; 0.000  ; RR ; IC   ; 1      ; FF_X4_Y7_N29     ; cdc.input_fifo|rd_gray_s1[0]|d               ;
+;  1.032        ; 0.079  ; RR ; CELL ; 1      ; FF_X4_Y7_N29     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.820        ; -0.212 ;    ; uTh  ; 1      ; FF_X4_Y7_N29     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #16: Slack is 9.600  (set_max_skew -from [get_registers {*cdc*input_fifo*rd_gray[*]}] -to [get_registers {*cdc*input_fifo*rd_gray_s1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.271                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.250                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[0]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.032                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.820                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.400                                        ;
+; Slack                      ; 9.600                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.271 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.423       ; 33         ; 0.000 ; 0.423 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.032 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.325       ; 31         ; 0.000 ; 0.325 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++--------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                          ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location        ; Element                                      ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                 ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N13    ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X4_Y7_N13    ; cdc.input_fifo|rd_gray[3]|q                  ;
+;  0.684        ; 0.423  ; FF ; IC   ; 1      ; LCCOMB_X4_Y7_N8 ; cdc.input_fifo|rd_gray_s1[3]~feeder|dataa    ;
+;  1.156        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X4_Y7_N8 ; cdc.input_fifo|rd_gray_s1[3]~feeder|combout  ;
+;  1.156        ; 0.000  ; FF ; IC   ; 1      ; FF_X4_Y7_N9     ; cdc.input_fifo|rd_gray_s1[3]|d               ;
+;  1.271        ; 0.115  ; FF ; CELL ; 1      ; FF_X4_Y7_N9     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
+; Clock Arrival ;        ;    ;      ;        ;                 ;                                              ;
+;  1.250        ; -0.021 ;    ; uTsu ; 1      ; FF_X4_Y7_N9     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N27     ; axis_async_fifo:cdc.input_fifo|rd_gray[0]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X4_Y7_N27     ; cdc.input_fifo|rd_gray[0]|q                  ;
+;  0.586        ; 0.325  ; RR ; IC   ; 1      ; LCCOMB_X4_Y7_N28 ; cdc.input_fifo|rd_gray_s1[0]~feeder|dataa    ;
+;  0.953        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X4_Y7_N28 ; cdc.input_fifo|rd_gray_s1[0]~feeder|combout  ;
+;  0.953        ; 0.000  ; RR ; IC   ; 1      ; FF_X4_Y7_N29     ; cdc.input_fifo|rd_gray_s1[0]|d               ;
+;  1.032        ; 0.079  ; RR ; CELL ; 1      ; FF_X4_Y7_N29     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.820        ; -0.212 ;    ; uTh  ; 1      ; FF_X4_Y7_N29     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[0] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #17: Slack is 9.601  (set_max_skew -from [get_registers {*cdc*input_fifo*rd_gray[*]}] -to [get_registers {*cdc*input_fifo*rd_gray_s1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[1]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[1] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.271                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.250                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.033                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.821                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.399                                        ;
+; Slack                      ; 9.601                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.271 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.423       ; 33         ; 0.000 ; 0.423 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.033 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.326       ; 31         ; 0.000 ; 0.326 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                           ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N7      ; axis_async_fifo:cdc.input_fifo|rd_gray[1]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X4_Y7_N7      ; cdc.input_fifo|rd_gray[1]|q                  ;
+;  0.684        ; 0.423  ; FF ; IC   ; 1      ; LCCOMB_X4_Y7_N14 ; cdc.input_fifo|rd_gray_s1[1]~feeder|dataa    ;
+;  1.156        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X4_Y7_N14 ; cdc.input_fifo|rd_gray_s1[1]~feeder|combout  ;
+;  1.156        ; 0.000  ; FF ; IC   ; 1      ; FF_X4_Y7_N15     ; cdc.input_fifo|rd_gray_s1[1]|d               ;
+;  1.271        ; 0.115  ; FF ; CELL ; 1      ; FF_X4_Y7_N15     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[1] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  1.250        ; -0.021 ;    ; uTsu ; 1      ; FF_X4_Y7_N15     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[1] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
++--------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                        ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location        ; Element                                      ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                 ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N13    ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X4_Y7_N13    ; cdc.input_fifo|rd_gray[3]|q                  ;
+;  0.587        ; 0.326  ; RR ; IC   ; 1      ; LCCOMB_X4_Y7_N8 ; cdc.input_fifo|rd_gray_s1[3]~feeder|dataa    ;
+;  0.954        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X4_Y7_N8 ; cdc.input_fifo|rd_gray_s1[3]~feeder|combout  ;
+;  0.954        ; 0.000  ; RR ; IC   ; 1      ; FF_X4_Y7_N9     ; cdc.input_fifo|rd_gray_s1[3]|d               ;
+;  1.033        ; 0.079  ; RR ; CELL ; 1      ; FF_X4_Y7_N9     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
+; Clock Arrival ;        ;    ;      ;        ;                 ;                                              ;
+;  0.821        ; -0.212 ;    ; uTh  ; 1      ; FF_X4_Y7_N9     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+
+
+Path #18: Slack is 9.601  (set_max_skew -from [get_registers {*cdc*input_fifo*rd_gray[*]}] -to [get_registers {*cdc*input_fifo*rd_gray_s1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.271                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.250                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[1]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[1] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.033                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.821                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.399                                        ;
+; Slack                      ; 9.601                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.271 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.423       ; 33         ; 0.000 ; 0.423 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.033 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.326       ; 31         ; 0.000 ; 0.326 ;
+;     Cell                ;       ; 3     ; 0.446       ; 43         ; 0.000 ; 0.367 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++--------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                          ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location        ; Element                                      ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                 ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N13    ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X4_Y7_N13    ; cdc.input_fifo|rd_gray[3]|q                  ;
+;  0.684        ; 0.423  ; FF ; IC   ; 1      ; LCCOMB_X4_Y7_N8 ; cdc.input_fifo|rd_gray_s1[3]~feeder|dataa    ;
+;  1.156        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X4_Y7_N8 ; cdc.input_fifo|rd_gray_s1[3]~feeder|combout  ;
+;  1.156        ; 0.000  ; FF ; IC   ; 1      ; FF_X4_Y7_N9     ; cdc.input_fifo|rd_gray_s1[3]|d               ;
+;  1.271        ; 0.115  ; FF ; CELL ; 1      ; FF_X4_Y7_N9     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
+; Clock Arrival ;        ;    ;      ;        ;                 ;                                              ;
+;  1.250        ; -0.021 ;    ; uTsu ; 1      ; FF_X4_Y7_N9     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N7      ; axis_async_fifo:cdc.input_fifo|rd_gray[1]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X4_Y7_N7      ; cdc.input_fifo|rd_gray[1]|q                  ;
+;  0.587        ; 0.326  ; RR ; IC   ; 1      ; LCCOMB_X4_Y7_N14 ; cdc.input_fifo|rd_gray_s1[1]~feeder|dataa    ;
+;  0.954        ; 0.367  ; RR ; CELL ; 1      ; LCCOMB_X4_Y7_N14 ; cdc.input_fifo|rd_gray_s1[1]~feeder|combout  ;
+;  0.954        ; 0.000  ; RR ; IC   ; 1      ; FF_X4_Y7_N15     ; cdc.input_fifo|rd_gray_s1[1]|d               ;
+;  1.033        ; 0.079  ; RR ; CELL ; 1      ; FF_X4_Y7_N15     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[1] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.821        ; -0.212 ;    ; uTh  ; 1      ; FF_X4_Y7_N15     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[1] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+
+Path #19: Slack is 9.603  (set_max_skew -from [get_registers {*cdc*input_fifo*rd_gray[*]}] -to [get_registers {*cdc*input_fifo*rd_gray_s1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.271                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.250                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[2]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[2] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.035                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.823                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.397                                        ;
+; Slack                      ; 9.603                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.271 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.423       ; 33         ; 0.000 ; 0.423 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.035 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.324       ; 31         ; 0.000 ; 0.324 ;
+;     Cell                ;       ; 3     ; 0.450       ; 43         ; 0.000 ; 0.371 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++--------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                          ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location        ; Element                                      ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                 ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N13    ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X4_Y7_N13    ; cdc.input_fifo|rd_gray[3]|q                  ;
+;  0.684        ; 0.423  ; FF ; IC   ; 1      ; LCCOMB_X4_Y7_N8 ; cdc.input_fifo|rd_gray_s1[3]~feeder|dataa    ;
+;  1.156        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X4_Y7_N8 ; cdc.input_fifo|rd_gray_s1[3]~feeder|combout  ;
+;  1.156        ; 0.000  ; FF ; IC   ; 1      ; FF_X4_Y7_N9     ; cdc.input_fifo|rd_gray_s1[3]|d               ;
+;  1.271        ; 0.115  ; FF ; CELL ; 1      ; FF_X4_Y7_N9     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
+; Clock Arrival ;        ;    ;      ;        ;                 ;                                              ;
+;  1.250        ; -0.021 ;    ; uTsu ; 1      ; FF_X4_Y7_N9     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+
++--------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                        ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location        ; Element                                      ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                 ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X3_Y7_N17    ; axis_async_fifo:cdc.input_fifo|rd_gray[2]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X3_Y7_N17    ; cdc.input_fifo|rd_gray[2]|q                  ;
+;  0.585        ; 0.324  ; RR ; IC   ; 1      ; LCCOMB_X3_Y7_N6 ; cdc.input_fifo|rd_gray_s1[2]~feeder|datab    ;
+;  0.956        ; 0.371  ; RR ; CELL ; 1      ; LCCOMB_X3_Y7_N6 ; cdc.input_fifo|rd_gray_s1[2]~feeder|combout  ;
+;  0.956        ; 0.000  ; RR ; IC   ; 1      ; FF_X3_Y7_N7     ; cdc.input_fifo|rd_gray_s1[2]|d               ;
+;  1.035        ; 0.079  ; RR ; CELL ; 1      ; FF_X3_Y7_N7     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[2] ;
+; Clock Arrival ;        ;    ;      ;        ;                 ;                                              ;
+;  0.823        ; -0.212 ;    ; uTh  ; 1      ; FF_X3_Y7_N7     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[2] ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+
+
+Path #20: Slack is 9.606  (set_max_skew -from [get_registers {*cdc*input_fifo*rd_gray[*]}] -to [get_registers {*cdc*input_fifo*rd_gray_s1[*]}] 10.000 -exclude { from_clock to_clock clock_uncertainty })
+===============================================================================
++---------------------------------------------------------------------------+
+; Path Summary                                                              ;
++----------------------------+----------------------------------------------+
+; Property                   ; Value                                        ;
++----------------------------+----------------------------------------------+
+; Latest Path Arrival        ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.271                                        ;
+;  Clock Arrival Time        ; 0.021                                        ;
+;  Relative Delay            ; 1.250                                        ;
+; Earliest Path Arrival      ;                                              ;
+;  From Node                 ; axis_async_fifo:cdc.input_fifo|rd_gray[4]    ;
+;  To Node                   ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[4] ;
+;  Launch Clock              ; core_clk                                     ;
+;  Latch Clock               ; source_clk                                   ;
+;  Data Arrival Time         ; 1.038                                        ;
+;  Clock Arrival Time        ; 0.212                                        ;
+;  Relative Delay            ; 0.826                                        ;
+; Cross Path Clock Pessimism ; 0.030                                        ;
+; Required Skew              ; 10.000                                       ;
+; Actual Skew                ; 0.394                                        ;
+; Slack                      ; 9.606                                        ;
++----------------------------+----------------------------------------------+
+
++------------------------------------------------------------------------------------+
+;  Path Statistics                                                                   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Property                ; Value ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+; Latest Path Arrival     ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.271 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.423       ; 33         ; 0.000 ; 0.423 ;
+;     Cell                ;       ; 3     ; 0.587       ; 46         ; 0.000 ; 0.472 ;
+;     uTco                ;       ; 1     ; 0.261       ; 20         ; 0.261 ; 0.261 ;
+; Earliest Path Arrival   ;       ;       ;             ;            ;       ;       ;
+;  Clock Skew             ; 0.000 ;       ;             ;            ;       ;       ;
+;  Data Delay             ; 1.038 ;       ;             ;            ;       ;       ;
+;  Number of Logic Levels ;       ; 1     ;             ;            ;       ;       ;
+;  Physical Delays        ;       ;       ;             ;            ;       ;       ;
+;   Data Arrival Path     ;       ;       ;             ;            ;       ;       ;
+;    Data                 ;       ;       ;             ;            ;       ;       ;
+;     IC                  ;       ; 2     ; 0.327       ; 31         ; 0.000 ; 0.327 ;
+;     Cell                ;       ; 3     ; 0.450       ; 43         ; 0.000 ; 0.371 ;
+;     uTco                ;       ; 1     ; 0.261       ; 25         ; 0.261 ; 0.261 ;
++-------------------------+-------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++--------------------------------------------------------------------------------------------------------------+
+; Latest Path Arrival                                                                                          ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location        ; Element                                      ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                 ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X4_Y7_N13    ; axis_async_fifo:cdc.input_fifo|rd_gray[3]    ;
+;  0.261        ; 0.000  ; FF ; CELL ; 1      ; FF_X4_Y7_N13    ; cdc.input_fifo|rd_gray[3]|q                  ;
+;  0.684        ; 0.423  ; FF ; IC   ; 1      ; LCCOMB_X4_Y7_N8 ; cdc.input_fifo|rd_gray_s1[3]~feeder|dataa    ;
+;  1.156        ; 0.472  ; FF ; CELL ; 1      ; LCCOMB_X4_Y7_N8 ; cdc.input_fifo|rd_gray_s1[3]~feeder|combout  ;
+;  1.156        ; 0.000  ; FF ; IC   ; 1      ; FF_X4_Y7_N9     ; cdc.input_fifo|rd_gray_s1[3]|d               ;
+;  1.271        ; 0.115  ; FF ; CELL ; 1      ; FF_X4_Y7_N9     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
+; Clock Arrival ;        ;    ;      ;        ;                 ;                                              ;
+;  1.250        ; -0.021 ;    ; uTsu ; 1      ; FF_X4_Y7_N9     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[3] ;
++---------------+--------+----+------+--------+-----------------+----------------------------------------------+
+
++---------------------------------------------------------------------------------------------------------------+
+; Earliest Path Arrival                                                                                         ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Total         ; Incr   ; RF ; Type ; Fanout ; Location         ; Element                                      ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+; Data Arrival  ;        ;    ;      ;        ;                  ;                                              ;
+;  0.261        ; 0.261  ;    ; uTco ; 1      ; FF_X3_Y7_N1      ; axis_async_fifo:cdc.input_fifo|rd_gray[4]    ;
+;  0.261        ; 0.000  ; RR ; CELL ; 1      ; FF_X3_Y7_N1      ; cdc.input_fifo|rd_gray[4]|q                  ;
+;  0.588        ; 0.327  ; RR ; IC   ; 1      ; LCCOMB_X3_Y7_N30 ; cdc.input_fifo|rd_gray_s1[4]~feeder|datab    ;
+;  0.959        ; 0.371  ; RR ; CELL ; 1      ; LCCOMB_X3_Y7_N30 ; cdc.input_fifo|rd_gray_s1[4]~feeder|combout  ;
+;  0.959        ; 0.000  ; RR ; IC   ; 1      ; FF_X3_Y7_N31     ; cdc.input_fifo|rd_gray_s1[4]|d               ;
+;  1.038        ; 0.079  ; RR ; CELL ; 1      ; FF_X3_Y7_N31     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[4] ;
+; Clock Arrival ;        ;    ;      ;        ;                  ;                                              ;
+;  0.826        ; -0.212 ;    ; uTh  ; 1      ; FF_X3_Y7_N31     ; axis_async_fifo:cdc.input_fifo|rd_gray_s1[4] ;
++---------------+--------+----+------+--------+------------------+----------------------------------------------+
+
+

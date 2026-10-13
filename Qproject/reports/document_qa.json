@@ -1,0 +1,64 @@
+{
+  "renderer": "LibreOffice 26.8.1 isolated temporary runtime and Poppler",
+  "documents": [
+    {
+      "path": "doc\\01_项目设计说明书.docx",
+      "pages": 8,
+      "sha256": "d39289423d11d7ecd3593f19d28b173dcdaf30200959f9fbf4d191a2183b3828",
+      "inspected_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "visual_qa": "PASS",
+      "content_preserved": true,
+      "source_sha256": "232a4f95cea210cc243c33c0d9232d1ac2391606b0c6146fd8185f1985c05d0d",
+      "body_paragraphs_checked": 26,
+      "chinese_runs_checked": 132,
+      "format": {
+        "body_font": "宋体",
+        "heading_font": "微软雅黑",
+        "body_line_spacing": 1.5,
+        "first_line_indent_characters": 2
+      },
+      "assistance_statements_found": 0
+    },
+    {
+      "path": "doc\\02_模块实现与验证报告.docx",
+      "pages": 13,
+      "sha256": "1f2377747c419c0740b5481a6cfa8c2ec4baa43182a5452b59df3446257ae1bd",
+      "inspected_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "visual_qa": "PASS",
+      "content_preserved": true,
+      "source_sha256": "5ea5c5723f42a36cadddc2dab5ae2c181f2e7f8a5e423115946f4cce3776cfef",
+      "body_paragraphs_checked": 66,
+      "chinese_runs_checked": 190,
+      "format": {
+        "body_font": "宋体",
+        "heading_font": "微软雅黑",
+        "body_line_spacing": 1.5,
+        "first_line_indent_characters": 2
+      },
+      "assistance_statements_found": 0
+    }
+  ]
+}

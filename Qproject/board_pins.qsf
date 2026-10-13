@@ -1,0 +1,19 @@
+# Supplied mapping workbook Sheet1 rows 3,71,79:82;
+# supplied PDF physical pages 14,21,22 (printed pages 13,20,21).
+set_location_assignment PIN_E1 -to sys_clk
+set_location_assignment PIN_M15 -to sys_rst_n
+set_location_assignment PIN_L7 -to {led[0]}
+set_location_assignment PIN_M6 -to {led[1]}
+set_location_assignment PIN_P3 -to {led[2]}
+set_location_assignment PIN_N3 -to {led[3]}
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sys_clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sys_rst_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to {led[0]}
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to {led[1]}
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to {led[2]}
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to {led[3]}
+set_instance_assignment -name CURRENT_STRENGTH_NEW "4MA" -to {led[0]}
+set_instance_assignment -name CURRENT_STRENGTH_NEW "4MA" -to {led[1]}
+set_instance_assignment -name CURRENT_STRENGTH_NEW "4MA" -to {led[2]}
+set_instance_assignment -name CURRENT_STRENGTH_NEW "4MA" -to {led[3]}
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"
